@@ -39,6 +39,16 @@ body {
   display: flex;
   justify-content: center;
 }
+.editUser {
+  margin: 10px 0 10px 0;
+  text-align: center;
+}
+
+.editUser input {
+  padding: 5px 10px;
+  border-radius: 5px;
+  width: 320px;
+}
 .avatar {
   border: 1px black solid;
 }
