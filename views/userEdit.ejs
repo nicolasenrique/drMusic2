@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/css/style-register.css" />
+    <title> </title>
+  </head>
+  <body>
+    <!--INICIO DEL HEADER-->
+    <%- include('./partials/header') %>
+    <!--FIN DEL HEADER-->
+
+      <div>
+        <p class="message-create">Editar Usuario</p>
+      </div>
+      <br>
+
+    <form action="/users/update/<%= user.id_user %>" method="POST">
+        <ul>
+            <li class="editUser">
+                <label for="first_name">Nombre </label>
+                <input type="text" name="first_name" value="<%= user.first_name %>">
+            </li>
+            <li class="editUser">
+                <label for="last_name">Apellido </label>
+                <input type="text" name="last_name" value="<%= user.last_name %>">
+            </li>
+            <li class="editUser">
+                <label for="email">Email </label>
+                <input type="email" name="email" value="<%= user.email %>">
+            </li>
+            <li class="editUser">
+                <label for="password">Contraseña </label>
+                <input type="password" name="password" placeholder="ingrese su nueva contraseña">
+            </li>
+            <li class="editUser">
+                <label for="phone_number">Teléfono </label>
+                <input type="text" name="phone_number" value="<%= user.phone_number %>">
+            </li>
+            <li class="editUser">
+                <label for="address">Domicilio </labe>
+                <input type="text" name="address" value="<%= user.address %>">
+            </li>
+            <li class="editUser">
+                <label for="alt_phone_numnber">Teléfono Alternativo</labe>
+                <input type="text" name="alt_phone_numnber" value="<%= user.alt_phone_numnber %>">
+            </li>
+        </ul>
+        <br>
+        <button class="" type="submit">Actualizar</button>
+        <br>
+    </form>
+
+
+
+    <!--INICIO DEL FOOTER-->
+    <%- include('./partials/footer') %>
+    <!--FIN DEL FOOTER-->
+  </body>
+</html>
