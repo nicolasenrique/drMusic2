@@ -18,7 +18,7 @@ function grabaRegistros(products) {
 
 const controlProducts = {  
   list: function (req, res) {
-    // Show all products from BD
+  // Show all products from BD
     db.Product.findAll({include: [{association: "prod_price" }, {association: "prod_image" }]})
         .then(function(products){
             res.render('productList', { products: products} )
@@ -148,27 +148,43 @@ const controlProducts = {
   },
   delete: (req, res) => {
     //
-    const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
-    let id = req.params.id;
-    let productsNew = products.filter(removeID);
-    function removeID(prod) {
-      return prod.prodId != id;
-    }
-    grabaRegistros(productsNew);
-    // res.send('estamos en el detele!!');
-    res.redirect("/products/list");
+    //const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
+    //let id = req.params.id;
+    //let productsNew = products.filter(removeID);
+    //function removeID(prod) {
+    // return prod.prodId != id;
+    //}
+    //grabaRegistros(productsNew);
+    //res.redirect("/products/list");
+    db.Product.destroy({
+      where: {
+          id_product: req.params.id
+      }
+  })
+    .then(function(){
+          res.redirect('/products/list')
+      })
+    .catch(function(){
+      res.send("hay errores")
+    })
   },
   formDelete: (req, res) => {
     //
-    const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
-    let product;
-    for (prod of products) {
-      if (prod.prodId == req.params.id) {
-        product = prod;
-        break;
-      }
-    }
-    res.render("product_delete", { product: product });
+    //const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
+    //let product;
+    //for (prod of products) {
+    //  if (prod.prodId == req.params.id) {
+    //    product = prod;
+    //    break;
+    //  }
+    //}
+    //res.render("product_delete", { product: product });
+    db.Product.findByPk(req.params.id, {
+      include: [{association: "prod_price"},{association: "prod_image"}]
+    })
+      .then(function(product){
+        res.render('product_delete', {product: product})
+    });   
   }
 };
 
