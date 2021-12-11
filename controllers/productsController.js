@@ -15,14 +15,14 @@ function grabaRegistros(products) {
   fs.writeFileSync(productsFilePath, prdoctsJSON);
 }
 
-// Show all products
-const controlProducts = {
+
+const controlProducts = {  
   list: function (req, res) {
-    //const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
-    //res.render("productList", { products });
-    db.ProdSize.findAll().then(function (catgories) {
-      res.send(catgories);
-    });
+    // Show all products from BD
+    db.Product.findAll({include: [{association: "prod_price" }, {association: "prod_image" }]})
+        .then(function(products){
+            res.render('productList', { products: products} )
+        })
   },
   // Shows one product
   detail: function (req, res) {
