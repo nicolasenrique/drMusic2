@@ -31,6 +31,9 @@ module.exports = function (sequelize, dataTypes) {
       last_login: {
         type: dataTypes.DATE,
       },
+      avatar: {
+        type: dataTypes.STRING,
+      },
     };
   
     let config = {
