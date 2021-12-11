@@ -91,8 +91,10 @@ const controlProducts = {
         creation_date: null,
         modif_date: null,
         active: 1,
-        id_colors: null,
-        id_prod_category: req.body.categoria
+        id_colors: req.body.color,
+        id_prod_category: req.body.categoria,
+        id_prod_price: req.body.precio,
+    
 
       })
         .then(() => {

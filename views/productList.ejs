@@ -100,7 +100,7 @@
           <% for (let i = 0 ; i < products.length ; i++) { %>
 
           <div class="fila-productos">
-            <a href="<%=products[i].prodId %>"><article class="product">
+            <a href="<%=products[i].id_product %>"><article class="product">
               <% for (let n = 0 ; n < products[i].prod_image.length ; n++) { %>
               <img src="/img/products/<%= products[i].prod_image[n].name %>" alt="producto" />
               <% } %>

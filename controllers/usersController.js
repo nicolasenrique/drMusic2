@@ -1,9 +1,9 @@
 const fs = require("fs");
 const path = require("path");
 const bcryptjs = require("bcryptjs");
-const User = require("../models/Users");
 const usersFilePath = path.join(__dirname, "../data/usuarios.json");
 const users = JSON.parse(fs.readFileSync(usersFilePath, "utf-8"));
+const User = require("../models/Users");
 
 // acceso a BD
 let db = require("../database/models");
@@ -80,7 +80,7 @@ const controlUsers = {
   },
   loginProcess: function (req, res) {
     // let userToLogin = User.findByField("email", req.body.email);
-    let userToLogin = User.findByFieldMin("email", req.body.email); //datos minimos necesarios
+    let userToLogin = User.findByFieldMin("email", req.body.email) //datos minimos necesarios
     console.log("userToLogin.rol->" + userToLogin.rol);
 
     if (userToLogin) {
