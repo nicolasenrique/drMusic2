@@ -56,15 +56,12 @@
                 </div>                
                 <div class="item">
                   <p>Categoría</p>
-                  <select name="categoria" required>
-                    <option value="undefined">Seleccione una categoría</option>
-                    <option value="guitarra">Guitarra</option>
-                    <option value="bajo">Bajo</option>
-                    <option value="teclado">Teclado</option>
-                    <option value="audio">Audio</option>
-                    <option value="bateria">Bateria</option>                    
-                    <option value="accesorios">Accesorios</option>
-                  </select>
+                  <select name="categoria" id="" required>
+                    <option value="" disabled selected>- Seleccione la categoría - </option>
+                    <% allProdCats.forEach(cat => { %>
+                    <option value="<%= cat.id_prod_category %>"><%= cat.description %></option>
+                    <% }); %>
+                </select>
                 </div>
                 <div class="item">
                   <p>Medidas</p>
@@ -81,7 +78,13 @@
                 </div>
                 <div class="item">
                   <p>Color principal</p>
-                  <div class="multiple-items">             
+                  <select name="id_colors" id="" required>
+                    <option value="" disabled selected>- Seleccione el color - </option>
+                    <% allColors.forEach(color => { %>
+                    <option value="<%= color.id_color %>"><%= color.name %></option>
+                    <% }); %>
+                </select>
+                  <!-- <div class="multiple-items">             
                     <div>
                         <label for="silver">Silver </label>   
                         <input type="radio" name="color" id="silver" value="silver">                                         
@@ -117,7 +120,7 @@
                     <div>
                       <label for="negro">Negro</label>
                       <input type="radio" name="color" id="negro" value="negro">
-                    </div>
+                    </div> -->
                   </div>
                 </div>                  
               </div>

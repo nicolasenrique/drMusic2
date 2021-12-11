@@ -31,4 +31,6 @@ router.put('/update',   upload.single('imagen'),  productsController.update);
 router.get('/:id/delete', authAdminMiddleware,    productsController.formDelete);
 router.delete('/:id/delete',authAdminMiddleware,  productsController.delete);
 
+
+
 module.exports = router;
