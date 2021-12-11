@@ -101,18 +101,24 @@
 
           <div class="fila-productos">
             <a href="<%=products[i].prodId %>"><article class="product">
-              <img src="/img/products/<%= products[i].imagen %>" alt="producto" />
+              <% for (let n = 0 ; n < products[i].prod_image.length ; n++) { %>
+              <img src="/img/products/<%= products[i].prod_image[n].name %>" alt="producto" />
+              <% } %>
               <div class="cart">
                 <i class="fas fa-shopping-cart"></i>
               </div>
               <div class="precio-descuento">
-                <h3 class="precio">$<%= products[i].precio %></h3>
+                
+                <% for (let j = 0 ; j < products[i].prod_price.length ; j++) { %>
+                  <h3 class="precio">$<%= products[i].prod_price[j].price %></h3>
+                <% } %>
+                
 
-                <h3 class="nombre"><%= products[i].nombre %></h3>
+                <h3 class="nombre"><%= products[i].brand %></h3>
               </div>
             </article>
             <div>
-              <h3 class="descripcion"><%= products[i].descripcion %></h3>
+              <h3 class="descripcion"><%= products[i].description %></h3>
             </div>
           </div>
           
