@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&display=swap"/>
+    <link rel="stylesheet" href="/css/style-login.css" />
+    <title>Log in - Dr Music</title>
+  </head>
+  <body>
+
+    <!--INICIO DEL HEADER-->
+    <%- include('./partials/header') %>
+    <!--FIN DEL HEADER-->
+
+    <div class="logo-mediano">
+      <img class="mid-logo" src="/img/Dr-F2EDE4.png" alt="our-logo" />
+    </div>
+    <div>
+      <p class="message-sign-in">Inicia sesión en tu cuenta</p>
+    </div>
+
+    <form action="/users/login" method="POST" class="main-form">
+      <div>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          class="mail"
+        />
+      </div>
+      <% if (locals.errors && errors.email) { %>
+        <div class="text-danger">
+          <%= errors.email.msg %>
+      </div>
+      <% } %>
+      <div>
+        <input
+          type="password"
+          name="password"
+          placeholder="Contraseña"
+          class="password"
+        />
+      </div>
+      <div class="sign-in-buttom">
+        <button type="submit" name="sign-in" class="sign-in-tex">
+          INGRESAR
+        </button>
+      </div>
+      <div class="recordame"> 
+          <input type="checkbox" name="recordarme" value="recordarme">
+          <label for="recordame">Recordarme</label>
+          <p class="forgot">OLVIDASTE TU CONTRASEÑA?</p>       
+      </div>
+      <div class="dont-have">
+        <p class="dont-have-low">No tienes cuenta en Dr. Music?</p>
+        <a href="/users/register"><p class="dont-have-low-red">Registrarse</p></a>
+      </div>
+    </form>
+
+      <!--INICIO DEL FOOTER-->
+      <%- include('./partials/footer') %>
+      <!--FIN DEL FOOTER-->
+
+  </body>
+</html>

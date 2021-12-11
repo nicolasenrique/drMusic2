@@ -1,0 +1,62 @@
+[
+  {
+    "userId": 0,
+    "firstName": "admin",
+    "lastName": "admin",
+    "email": "admin@drmusic.com",
+    "telCelular": null,
+    "telAlternativo": null,
+    "password": "$2a$10$WaTgvQSSrElOIqV7uEOpUeAHIkdDmTxWgGuKojsUi3YBYKL0XS5E.",
+    "rol": "admin",
+    "estado": "activo",
+    "avatar": "default.png",
+    "fechaCreacion": "2021-06-01",
+    "fechaModificacion": null,
+    "fechaUltimoLogin": null
+  },
+  {
+    "userId": 1,
+    "firstName": "nano",
+    "lastName": "ferreccio",
+    "email": "nano@nano.com",
+    "telCelular": null,
+    "telAlternativo": null,
+    "password": "$2a$10$WaTgvQSSrElOIqV7uEOpUeAHIkdDmTxWgGuKojsUi3YBYKL0XS5E.",
+    "rol": "user",
+    "estado": "activo",
+    "avatar": "default.png",
+    "fechaCreacion": "2021-06-01",
+    "fechaModificacion": null,
+    "fechaUltimoLogin": null
+  },
+  {
+    "userId": 2,
+    "firstName": "Lionel",
+    "lastName": "Messi",
+    "email": "messi@messi.com",
+    "telCelular": null,
+    "telAlternativo": null,
+    "password": "$2a$10$WaTgvQSSrElOIqV7uEOpUeAHIkdDmTxWgGuKojsUi3YBYKL0XS5E.",
+    "rol": "user",
+    "estado": "activo",
+    "avatar": "default.png",
+    "fechaCreacion": "2021-06-01",
+    "fechaModificacion": null,
+    "fechaUltimoLogin": null
+  },
+  {
+    "userId": 3,
+    "firstName": "Stan",
+    "lastName": "Lee",
+    "email": "user@drmusic.com",
+    "telCelular": null,
+    "telAlternativo": null,
+    "password": "$2a$10$CZlczixtUUSZysA66l54aec9V1nnixxaMBmGcx2KqnT/ol0NjnOxe",
+    "rol": "user",
+    "estado": "activo",
+    "avatar": "img-1637109671919.jpeg",
+    "fechaCreacion": "Tue Nov 16 2021 21:41:12 GMT-0300 (hora estándar de Argentina)",
+    "fechaModificacion": null,
+    "fechaUltimoLogin": null
+  }
+]

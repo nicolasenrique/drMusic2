@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/css/userProfile.css" />
+    <title> </title>
+  </head>
+  <body>
+    <!--INICIO DEL HEADER-->
+    <%- include('./partials/header') %>
+    <!--FIN DEL HEADER-->
+
+    <div class="container">
+      
+        <!-- /Main Body -->
+
+        <div class="main-body">
+            <div class="datos">
+                  <img
+                    src="/img/users/<%= user.avatar %>"
+                    alt="user"
+                    class="rounded-circle"
+    
+                  />
+                  <div 
+                    <ul class="lista-datos">
+                      <li> <h4>Bienvenido <%= user.firstName %></h4></li>
+                      <li><h4>Tu email es <%= user.email %></h4></li>
+                    </ul>
+                  </div>
+                </div>
+
+              </div>
+
+    <!--INICIO DEL FOOTER-->
+    <%- include('./partials/footer') %>
+    <!--FIN DEL FOOTER-->
+  </body>
+</html>
