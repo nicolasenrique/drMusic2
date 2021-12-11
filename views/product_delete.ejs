@@ -19,7 +19,7 @@
       <div class="column-3">2</div>
       <div class="column-3">
           <div class="testbox">
-            <form action="/products/<%= product.prodId %>/delete?_method=DELETE" method="POST" enctype="multipart/form-data">
+            <form action="/products/<%=product.id_product%>/delete?_method=DELETE" method="POST" enctype="multipart/form-data">
               <div class="banner">
                 <h1>Borrado de productos</h1>
               </div>
@@ -29,15 +29,17 @@
                 <div class="multiple-items">
                   <div>
                     <p>Product ID</p>
-                    <input type="number" name="productId" placeholder="0000000"  value=<%= product.prodId %> disabled>  
+                    <input type="number" name="productId" placeholder="0000000"  value="<%= product.id_product %>">  
                   </div>
                   <div>
                     <p>Nombre</p>
-                    <input type="text" id ="name" name="name" placeholder="Nombre" value=<%= product.nombre %> disabled><br>
+                    <input type="text" id ="name" name="name" placeholder="Nombre" value="<%= product.description %>">
                   </div>
                   <div class="item">
                     <p>Precio</p>
-                    <input type="number" name="precio" placeholder="$ 0.00" value=<%= product.precio %> disabled>
+                    <% for (let i = 0 ; i < product.prod_price.length ; i++) { %>
+                    <input type="number" name="precio" placeholder="$ 0.00" value="<%= product.prod_price[i].price %>">
+                    <% } %>
                   </div>
                   <div class="item">
                     <p>Cantidad</p>
@@ -46,16 +48,19 @@
                 </div>
                 <div class="item">
                   <p>Descripción</p>
-                  <textarea name="descripcion"rows="3" placeholder="Incluya la descripción general del producto" disabled> <%= product.descripcion %> </textarea>
+                  <textarea name="descripcion"rows="3" placeholder="Incluya la descripción general del producto" disabled> <%= product.description %> </textarea>
                 </div>          
                 <div class="item">
                   <p>Imagen producto</p>
                   <!-- <input type="file" name="img" accept="image/*"> -->
-                  <img src="/img/products/<%= product.imagen %>"  alt=<%= product.nombre %> width="400" height="400">
+                  <% for (let i = 0 ; i < product.prod_image.length ; i++) { %>
+                  <img src="/img/products/<%=product.prod_image[i].name%>"  alt="<%=product.prod_image[i].name%>" width="400" height="400">
+                  <% } %>
                 </div>                
                 <div class="item">
                   <p>Categoría</p>
-                  <select name="categoria" disabled >
+                  <!--
+                    <select name="categoria" disabled >
                     <option value="undefined">Seleccione una categoría</option>
                     <option value="guitarra" <%= product.categoria  == 'guitarra' ? 'selected' : ''%>>Guitarra</option>
                     <option value="bajo"  <%= product.categoria  == 'bajo' ? 'selected' : ''%>>Bajo</option>
@@ -64,6 +69,8 @@
                     <option value="bateria" <%= product.categoria  == 'bateria' ? 'selected' : ''%>>Bateria</option>                    
                     <option value="accesorios" <%= product.categoria  == 'accesorios' ? 'selected' : ''%>>Accesorios</option>
                   </select>
+                  --> 
+                  <input type="text" value="<%= product.id_prod_category%>">
                 </div>
                 <div class="item">
                   <p>Medidas</p>
