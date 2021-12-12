@@ -183,8 +183,7 @@ const controlProducts = {
       
     //
     db.Product.update(
-      { 
-        
+      {         
         description: req.body.descripcion,
         brand: null,
         creation_date: Date(),
@@ -204,7 +203,7 @@ const controlProducts = {
         creation_date:Date(),
         modif_date: Date(),
         active: 1,
-        
+        id_product: product.id_product
     },
     {
       where: { id_product: req.params.id}
