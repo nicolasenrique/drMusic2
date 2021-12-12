@@ -27,9 +27,10 @@ router.get("/create",   authAdminMiddleware,      productsController.create);
 router.get("/:id",                                productsController.detail);
 router.post("/create",  upload.single("img"),     productsController.store);
 router.get('/:id/edit', authAdminMiddleware,      productsController.edit);
-router.put('/update',   upload.single('imagen'),  productsController.update);
+router.put('/:id/update',   upload.single('imagen'),  productsController.update);
 router.get('/:id/delete', authAdminMiddleware,    productsController.formDelete);
 router.delete('/:id/delete',authAdminMiddleware,  productsController.delete);
+
 
 
 
