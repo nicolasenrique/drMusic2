@@ -172,36 +172,10 @@ const controlProducts = {
     // res.render("productDescription", { selectedProduct: prodToUpadate });
       
     //
-    // db.Product
-    // .update(
-    //     {
-    //       description: req.body.descripcion,
-    //       brand: null,
-    //       creation_date: null,
-    //       modif_date: null,
-    //       active: 1,
-    //       id_colors: req.body.color,
-    //       id_prod_category: req.body.categoria,
-    //       id_prod_price: req.body.precio,
-    //     },
-    //     {
-    //         where: {id_product: productId}
-    //     })
-    // .then(()=> {
-    //     return res.redirect('/')})            
-    // .catch(error => res.send(error))
-    let productId = req.params.id;
-    db.Product.findOne({where: {id_product: 1}})
-.then(record => {
-  
-  if (!record) {
-    throw new Error('No record found')
-  }
-
-  console.log(`retrieved record ${JSON.stringify(record,null,2)}`) 
-
-  let values = {
-    description: req.body.descripcion,
+    db.Product
+    .update(
+        {
+          description: req.body.descripcion,
           brand: null,
           creation_date: null,
           modif_date: null,
@@ -209,18 +183,44 @@ const controlProducts = {
           id_colors: req.body.color,
           id_prod_category: req.body.categoria,
           id_prod_price: req.body.precio,
-  }
+        },
+        {
+            where: {id_product: req.params.id}
+        })
+    .then(()=> {
+        return res.redirect('/')})            
+    .catch(error => res.send(error))
+//     let productId = req.params.id;
+//     db.Product.findOne({where: {id_product: 1}})
+// .then(record => {
   
-  record.update(values).then( updatedRecord => {
-    console.log(`updated record ${JSON.stringify(updatedRecord,null,2)}`)
-    // login into your DB and confirm update
-  })
+//   if (!record) {
+//     throw new Error('No record found')
+//   }
 
-})
-.catch((error) => {
-  // do seomthing with the error
-  throw new Error(error)
-})
+//   console.log(`retrieved record ${JSON.stringify(record,null,2)}`) 
+
+//   let values = {
+//     description: req.body.descripcion,
+//           brand: null,
+//           creation_date: null,
+//           modif_date: null,
+//           active: 1,
+//           id_colors: req.body.color,
+//           id_prod_category: req.body.categoria,
+//           id_prod_price: req.body.precio,
+//   }
+  
+//   record.update(values).then( updatedRecord => {
+//     console.log(`updated record ${JSON.stringify(updatedRecord,null,2)}`)
+    // login into your DB and confirm update
+  // })
+
+// })
+// .catch((error) => {
+//   // do seomthing with the error
+//   throw new Error(error)
+// })
 
   },
   delete: (req, res) => {
