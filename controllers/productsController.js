@@ -233,6 +233,7 @@ const controlProducts = {
     //}
     //grabaRegistros(productsNew);
     //res.redirect("/products/list");
+    /*
     db.Product.destroy({
       where: {
           id_product: req.params.id
@@ -244,6 +245,33 @@ const controlProducts = {
     .catch(function(){
       res.send("hay errores")
     })
+    */
+    
+    db.ProdPrice.destroy({
+      where: {
+          id_product: req.params.id
+      }
+    })
+      .then(function() {
+        db.ProdImage.destroy({
+          where: {
+            id_product: req.params.id
+          }
+        })
+          .then(function() {
+            db.Product.destroy({
+              where: {
+                  id_product: req.params.id
+              }
+          })
+            .then(function(){
+                  res.redirect('/products/list')
+              })
+            .catch(function(){
+              res.send("hay errores")
+            })            
+          })        
+      })
   },
   formDelete: (req, res) => {
     //
