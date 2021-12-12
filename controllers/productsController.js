@@ -44,15 +44,17 @@ const controlProducts = {
     let promProdCat = db.ProdCategory.findAll();
     let promProdPrice = db.ProdPrice.findAll();
     let promProdSize = db.ProdSize.findAll();
+    let promProdImage = db.ProdImage.findAll();
 
-    Promise.all([promProduct, promColor, promProdCat, promProdPrice, promProdSize])
-      .then(([allProducts, allColors, allProdCats, allProdPrices, allProdSizes]) => {
+    Promise.all([promProduct, promColor, promProdCat, promProdPrice, promProdSize, promProdImage])
+      .then(([allProducts, allColors, allProdCats, allProdPrices, allProdSizes, allProdImages]) => {
         return res.render(path.resolve(__dirname, "..", "views", "product_create"), {
           allProducts,
           allColors,
           allProdCats,
           allProdPrices,
-          allProdSizes
+          allProdSizes,
+          allProdImages
         });
       })
       .catch((error) => res.send(error));
@@ -60,10 +62,10 @@ const controlProducts = {
   store: function (req, res) {
     // const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
     // let prodToCreate = {};
-    // let img = "default-img.png";
-    // if (req.file != undefined) {
-    //   img = req.file.filename;
-    // }
+    let img = "default-img.png";
+    if (req.file != undefined) {
+      img = req.file.filename;
+    }
     // prodToCreate.prodId = products[products.length - 1].prodId + 1;
     // prodToCreate.nombre = req.body.name;
     // prodToCreate.descripcion = req.body.descripcion;
@@ -96,7 +98,7 @@ const controlProducts = {
         active: 1,
         id_colors: req.body.color,
         id_prod_category: req.body.categoria,
-        //id_prod_price: req.body.precio, 
+        
 
       })
       
@@ -110,6 +112,13 @@ const controlProducts = {
             id_product: product.id_product
         })
       })
+    //     .then(function(product) {         
+          
+    //     db.ProdImage.create({
+    //       name: img,
+    //       id_product: product.id_product
+    //   })
+    // })
         .then(() => {
           return res.redirect("/products/list");
         })
@@ -175,7 +184,7 @@ const controlProducts = {
     db.Product.update(
       { 
         brand: req.body.name,
-        description: req.body.descripcion,
+        // description: req.body.descripcion,
         // brand: null,
         // creation_date: null,
         // modif_date: null,
