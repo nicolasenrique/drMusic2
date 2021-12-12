@@ -96,30 +96,26 @@ const controlProducts = {
         active: 1,
         id_colors: req.body.color,
         id_prod_category: req.body.categoria,
-        id_prod_price: req.body.precio,
-    
+        //id_prod_price: req.body.precio, 
 
       })
-        .then(function() {
-      db.ProdPrice.create(
-        {price:req.body.precio,
-          creation_date:Date(),
-          modif_date: Date(),
-          active: 1,
-          id_product:counter
-        
-        },
-        {
-        where: {
-          id_product: req.params.id
-        }
+      
+      .then(function(product) {         
+          
+          db.ProdPrice.create({
+            price:req.body.precio,
+            creation_date:Date(),
+            modif_date: Date(),
+            active: 1,
+            id_product: product.id_product
+        })
       })
         .then(() => {
-          return res.redirect("/users/login");
+          return res.redirect("/products/list");
         })
-        .catch((error) => res.send(error));
-  })
-  
+        .catch(function(){
+          res.send("hay errores")         
+        })  
   },
   //
   edit: (req, res) => {
