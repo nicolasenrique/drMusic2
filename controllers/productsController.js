@@ -88,8 +88,8 @@ const controlProducts = {
     db.Product.create({
         description: req.body.descripcion,
         brand: null,
-        creation_date: null,
-        modif_date: null,
+        creation_date: Date(),
+        modif_date: Date(),
         active: 1,
         id_colors: req.body.color,
         id_prod_category: req.body.categoria,
@@ -97,10 +97,26 @@ const controlProducts = {
     
 
       })
+        .then(function() {
+      db.ProdPrice.create(
+        {price:req.body.precio,
+          creation_date:Date(),
+          modif_date: Date(),
+          active: 1,
+          id_product:5
+        
+        },
+        {
+        where: {
+          id_product: req.params.id
+        }
+      })
         .then(() => {
           return res.redirect("/users/login");
         })
         .catch((error) => res.send(error));
+  })
+  
   },
   //
   edit: (req, res) => {
@@ -117,27 +133,12 @@ const controlProducts = {
 
     //
 
-    let productId = req.params.id;
-
-    let promProduct = db.Product.findByPk(productId,{include: ['color','prod_category','prod_size','prod_price','prod_image']});
-    let promColor = db.Color.findAll();
-    let promProdCat = db.ProdCategory.findAll();
-    let promProdPrice = db.ProdPrice.findAll();
-    let promProdSize = db.ProdSize.findAll();
-
-    Promise.all([promProduct, promColor, promProdCat, promProdPrice, promProdSize])
-      .then(([Products, allColors, allProdCats, allProdPrices, allProdSizes]) => {
-        return res.render(path.resolve(__dirname, "..", "views", "product_create"), {
-          Products,
-          allColors,
-          allProdCats,
-          allProdPrices,
-          allProdSizes
-        });
-      })
-      .catch((error) => res.send(error));
-
-
+    db.Product.findByPk(req.params.id, {
+      include: [{association: "prod_price"},{association: "prod_image"},{association: "prod_category"},{association: "prod_size"}]
+    })
+      .then(function(product){
+        res.render('product_edit', {product: product})
+    });   
   },
   //
   update: (req, res) => {
@@ -172,56 +173,38 @@ const controlProducts = {
     // res.render("productDescription", { selectedProduct: prodToUpadate });
       
     //
-    db.Product
-    .update(
-        {
-          description: req.body.descripcion,
-          brand: null,
-          creation_date: null,
-          modif_date: null,
-          active: 1,
-          id_colors: req.body.color,
-          id_prod_category: req.body.categoria,
-          id_prod_price: req.body.precio,
-        },
-        {
-            where: {id_product: req.params.id}
-        })
-    .then(()=> {
-        return res.redirect('/')})            
-    .catch(error => res.send(error))
-//     let productId = req.params.id;
-//     db.Product.findOne({where: {id_product: 1}})
-// .then(record => {
+    db.Product.update(
+      { 
+        brand: req.body.name,
+        description: req.body.descripcion,
+        // brand: null,
+        // creation_date: null,
+        // modif_date: null,
+        // active: 1,
+        // id_colors: req.body.color,
+        // id_prod_category: req.body.categoria,    
+      },
+      {
+        where: { id_product: req.params.id}
+        }
+    )
+    // .then(function() {
+    //   db.ProdPrice.update(
+    //     {price:req.body.precio},
+    //     {
+    //     where: {
+    //       id_product: req.params.id
+    //     }
+    //   })
   
-//   if (!record) {
-//     throw new Error('No record found')
-//   }
-
-//   console.log(`retrieved record ${JSON.stringify(record,null,2)}`) 
-
-//   let values = {
-//     description: req.body.descripcion,
-//           brand: null,
-//           creation_date: null,
-//           modif_date: null,
-//           active: 1,
-//           id_colors: req.body.color,
-//           id_prod_category: req.body.categoria,
-//           id_prod_price: req.body.precio,
-//   }
-  
-//   record.update(values).then( updatedRecord => {
-//     console.log(`updated record ${JSON.stringify(updatedRecord,null,2)}`)
-    // login into your DB and confirm update
-  // })
-
+      .then(function(){
+        res.send("producto modificado")
+    })
+    .catch(function(){
+      res.send("hay errores")
+    }) 
+   
 // })
-// .catch((error) => {
-//   // do seomthing with the error
-//   throw new Error(error)
-// })
-
   },
   delete: (req, res) => {
     //

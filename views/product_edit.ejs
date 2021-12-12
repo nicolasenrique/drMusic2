@@ -29,98 +29,102 @@
                 <div class="multiple-items">
                   <div>
                     <p>Product ID</p>
-                    <input type="number" name="productId" placeholder="0000000" disabled>
+                    <input type="number" name="productId" placeholder="0000000"  value="<%= product.id_product %>">  
                   </div>
                   <div>
                     <p>Nombre</p>
-                    <input type="text" id ="name" name="name" placeholder="Nombre"><br>
+                    <input type="text" id ="name" name="name" placeholder="Nombre" value="<%= product.description %>">
                   </div>
                   <div class="item">
                     <p>Precio</p>
-                    <input type="number" name="precio" placeholder="$ 0.00">
+                    <% for (let i = 0 ; i < product.prod_price.length ; i++) { %>
+                    <input type="number" name="precio" placeholder="$ 0.00" value="<%= product.prod_price[i].price %>">
+                    <% } %>
                   </div>
                   <div class="item">
                     <p>Cantidad</p>
-                    <input type="number" name="cantidad" placeholder="0" min="0" max="10">
+                    <input type="number" name="cantidad" placeholder="0" min="0" max="10" disabled>
                   </div>                   
                 </div>
                 <div class="item">
                   <p>Descripción</p>
-                  <textarea name="descripcion"rows="3" placeholder="Incluya la descripción general del producto"></textarea>
+                  
+                  <textarea name="descripcion"rows="3" placeholder="Incluya la descripción general del producto"> </textarea>
                 </div>          
                 <div class="item">
-                  <p>Imagen asociada</p>
-                  <!-- <input type="email" name="email"/> -->
-                  <!-- <input type="file" id="img" name="img" accept="image/*"> -->
-                  <input type="file" name="img" accept="image/*">
+                  <p>Imagen producto</p>
+                  <!-- <input type="file" name="img" accept="image/*"> -->
+                  <% for (let i = 0 ; i < product.prod_image.length ; i++) { %>
+                  <img src="/img/products/<%=product.prod_image[i].name%>"  alt="<%=product.prod_image[i].name%>" width="400" height="400">
+                  <% } %>
                 </div>                
                 <div class="item">
                   <p>Categoría</p>
-                  <select name="categoria" id="" required>
-                    <option value="" disabled selected>- Seleccione la categoría - </option>
-                    <% allProdCats.forEach(cat => { %>
-                    <option value="<%= cat.id_prod_category %>"><%= cat.description %></option>
-                    <% }); %>
-                </select>
+                  <!--
+                    <select name="categoria" disabled >
+                    <option value="undefined">Seleccione una categoría</option>
+                    <option value="guitarra" <%= product.categoria  == 'guitarra' ? 'selected' : ''%>>Guitarra</option>
+                    <option value="bajo"  <%= product.categoria  == 'bajo' ? 'selected' : ''%>>Bajo</option>
+                    <option value="teclado" <%= product.categoria  == 'teclado' ? 'selected' : ''%>>Teclado</option>
+                    <option value="audio" <%= product.categoria  == 'audio' ? 'selected' : ''%>>Audio</option>
+                    <option value="bateria" <%= product.categoria  == 'bateria' ? 'selected' : ''%>>Bateria</option>                    
+                    <option value="accesorios" <%= product.categoria  == 'accesorios' ? 'selected' : ''%>>Accesorios</option>
+                  </select>
+                  --> 
+                  <input type="text" value="<%= product.id_prod_category%>">
                 </div>
                 <div class="item">
                   <p>Medidas</p>
                   <div class="dimensions"> 
-                    <select name="medidas" required>
-                      <option value="cm">Centimetros</option>
-                      <option value="inch">Pugadas</option>
-                      <option value="metro">Metro</option>
+                    <select name="medidas" disabled>
+                      <option value="cm" <%= product.medidas  == 'cm' ? 'selected' : ''%>>Centimetros</option>
+                      <option value="inch" <%= product.medidas  == 'inch' ? 'selected' : ''%>>Pugadas</option>
+                      <option value="metro" <%= product.medidas  == 'metro' ? 'selected' : ''%>>Metro</option>
                     </select>                            
-                    <input type="number" name="alto" placeholder="Alto">
-                    <input type="number" name="ancho" placeholder="Ancho">
-                    <input type="number" name="profundidad" placeholder="Profundidad">
+                    <input type="number" name="alto" placeholder="Alto" value=<%= product.alto %> disabled>
+                    <input type="number" name="ancho" placeholder="Ancho" value=<%= product.ancho %> disabled>
+                    <input type="number" name="profundidad" placeholder="Profundidad" value=<%= product.profundidad %> disabled>
                   </div>
                 </div>
                 <div class="item">
                   <p>Color principal</p>
-                  <select name="color" id="" required>
-                    <option value="" disabled selected>- Seleccione el color - </option>
-                    <% allColors.forEach(color => { %>
-                    <option value="<%= color.id_color %>"><%= color.name %></option>
-                    <% }); %>
-                </select>
-                  <!-- <div class="multiple-items">             
+                  <div class="multiple-items">       
                     <div>
                         <label for="silver">Silver </label>   
-                        <input type="radio" name="color" id="silver" value="silver">                                         
+                        <input type="radio" name="color" id="silver" value="silver" <%= product.color  == 'silver' ? 'checked' : ''%> disabled>                                         
                     </div>
                     <div>
                       <label for="gold">Gold</label>                    
-                      <input type="radio" name="color" id="gold" value="gold">                    
+                      <input type="radio" name="color" id="gold" value="gold" <%= product.color  == 'gold' ? 'checked' : ''%> disabled>                      
                     </div>
                     <div>
                       <label for="azul">Azul</label>
-                      <input type="radio" name="color" id="azul" value="azul">                    
+                      <input type="radio" name="color" id="azul" value="azul" <%= product.color  == 'azul' ? 'checked' : ''%> disabled>                       
                     </div>
                     <div>
                       <label for="rojo">Rojo</label>                    
-                      <input type="radio" name="color" id="rojo" value="rojo">                    
+                      <input type="radio" name="color" id="rojo" value="rojo" <%= product.color  == 'rojo' ? 'checked' : ''%> disabled>                       
                     </div>
                     <div>
                       <label for="amarillo">Amarillo</label>
-                      <input type="radio" name="color" id="amarillo" value="amarillo">
+                      <input type="radio" name="color" id="amarillo" value="amarillo" <%= product.color  == 'amarillo' ? 'checked' : ''%> disabled>   
                     </div>
                     <div>
                       <label for="verde">Verde</label>
-                      <input type="radio" name="color" id="verde" value="verde">                    
+                      <input type="radio" name="color" id="verde" value="verde" <%= product.color  == 'verde' ? 'checked' : ''%> disabled>                       
                     </div>
                     <div>
                       <label for="rosa">Rosa</label>
-                      <input type="radio" name="color" id="rosa" value="rosa">                    
+                      <input type="radio" name="color" id="rosa" value="rosa" <%= product.color  == 'rosa' ? 'checked' : ''%> disabled>                       
                     </div>
                     <div>
                       <label for="blanco">Blanco</label>
-                      <input type="radio" name="color" id="blanco" value="blanco">                    
+                      <input type="radio" name="color" id="blanco" value="blanco" <%= product.color  == 'blanco' ? 'checked' : ''%> disabled>                       
                     </div>
                     <div>
                       <label for="negro">Negro</label>
-                      <input type="radio" name="color" id="negro" value="negro">
-                    </div> -->
+                      <input type="radio" name="color" id="negro" value="negro" <%= product.color  == 'negro' ? 'checked' : ''%> disabled>   
+                    </div>
                   </div>
                 </div>                  
               </div>
@@ -135,7 +139,8 @@
               <!-- <div class="item"> -->
                 <div class="multiple-items">
                   <button type="submit" >GUARDAR</button>                
-                  <button type="cancel" href="/">CANCELAR</button>
+                  <!-- <button type="button" href="/products/list">CANCELAR</button> -->
+                  <a href="/products/list"><button>CANCELAR</button></a>
                 </div>
               <!-- </div> -->
             </form>
