@@ -125,22 +125,19 @@ const controlUsers = {
       { 
         first_name: req.body.first_name,
         last_name: req.body.last_name,
-        //email: req.body.email,
-        //password: req.body.password,
-        //phone_number: req.body.phone_number,
-        //address: req.body.address,
-        //alt_phone_numnber: req.body.alt_phone_numnber
+        email: req.body.email,
+        password: req.body.password,
+        phone_number: req.body.phone_number,
+        address: req.body.address,
+        alt_phone_numnber: req.body.alt_phone_numnber
       },
       {
-        where: { id_user : req.params.id}
+        where: { id_user: req.params.id}
         }
     )
       .then(function(){
         res.send("usuario modificado")
     })
-
-
-
   },
   logout: function (req, res) {
     req.session.destroy(); // Este método borra cualquier cosa que esté en session

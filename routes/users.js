@@ -41,8 +41,8 @@ router.get("/profile", authMiddleware, usersController.profile);
 
 //Editar usuario
 
-router.get("/edit/:id", authMiddleware, usersController.edit);
-router.post("/edit/:id", authMiddleware, usersController.update);
+router.get("/edit/:id", usersController.edit);
+router.post("/update/:id", usersController.update);
 
 //Logout
 
