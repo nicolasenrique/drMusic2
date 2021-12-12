@@ -144,6 +144,7 @@ const controlProducts = {
     db.Product.findByPk(req.params.id, {
       include: [{association: "prod_price"},{association: "prod_image"},{association: "prod_category"},{association: "prod_size"}]
     })
+
       .then(function(product){
         res.render('product_edit', {product: product})
     });   
@@ -183,27 +184,33 @@ const controlProducts = {
     //
     db.Product.update(
       { 
-        brand: req.body.name,
-        // description: req.body.descripcion,
-        // brand: null,
-        // creation_date: null,
-        // modif_date: null,
-        // active: 1,
-        // id_colors: req.body.color,
-        // id_prod_category: req.body.categoria,    
+        
+        description: req.body.descripcion,
+        brand: null,
+        creation_date: Date(),
+        modif_date: Date(),
+        active: 1,
+        id_colors: req.body.color,
+        id_prod_category: req.body.categoria,
       },
       {
         where: { id_product: req.params.id}
         }
     )
-    // .then(function() {
-    //   db.ProdPrice.update(
-    //     {price:req.body.precio},
-    //     {
-    //     where: {
-    //       id_product: req.params.id
-    //     }
-    //   })
+    .then(function(product) {         
+          
+      db.ProdPrice.update({
+        price:req.body.precio,
+        creation_date:Date(),
+        modif_date: Date(),
+        active: 1,
+        
+    },
+    {
+      where: { id_product: req.params.id}
+      }
+    )
+  })
   
       .then(function(){
         res.send("producto modificado")
