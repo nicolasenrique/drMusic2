@@ -85,6 +85,9 @@ const controlProducts = {
     //   productsJSON
     // );
     // res.redirect("/products/list");
+
+
+
     db.Product.create({
         description: req.body.descripcion,
         brand: null,
@@ -103,7 +106,7 @@ const controlProducts = {
           creation_date:Date(),
           modif_date: Date(),
           active: 1,
-          id_product:5
+          id_product:counter
         
         },
         {
