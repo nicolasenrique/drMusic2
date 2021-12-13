@@ -92,7 +92,7 @@ const controlProducts = {
 
     db.Product.create({
         description: req.body.descripcion,
-        brand: null,
+        brand: req.body.name,
         creation_date: Date(),
         modif_date: Date(),
         active: 1,
@@ -185,7 +185,7 @@ const controlProducts = {
     db.Product.update(
       {         
         description: req.body.descripcion,
-        brand: null,
+        brand: req.body.name,
         creation_date: Date(),
         modif_date: Date(),
         active: 1,
@@ -212,7 +212,7 @@ const controlProducts = {
   })
   
       .then(function(){
-        res.send("producto modificado")
+        res.redirect("/products/list")
     })
     .catch(function(){
       res.send("hay errores")
