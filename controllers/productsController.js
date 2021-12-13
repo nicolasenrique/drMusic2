@@ -98,32 +98,30 @@ const controlProducts = {
         active: 1,
         id_colors: req.body.color,
         id_prod_category: req.body.categoria,
-        
-
       })
       
-      .then(function(product) {         
-          
+      .then((product)=> {         
+          console.log(product)
           db.ProdPrice.create({
             price:req.body.precio,
             creation_date:Date(),
             modif_date: Date(),
             active: 1,
             id_product: product.id_product
-        })
+        }); return product
       })
-    //     .then(function(product) {         
-          
-    //     db.ProdImage.create({
-    //       name: img,
-    //       id_product: product.id_product
-    //   })
-    // })
+        .then((product)=> {         
+          console.log(product)
+          db.ProdImage.create({
+          name: img,
+          id_product: product.id_product
+      }); return product
+    })
         .then(() => {
           return res.redirect("/products/list");
         })
-        .catch(function(){
-          res.send("hay errores")         
+        .catch(function(error){
+          res.send(error)         
         })  
   },
   //
