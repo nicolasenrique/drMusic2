@@ -26,19 +26,55 @@ const controlProducts = {
   },
   // Shows one product
   detail: function (req, res) {
-    const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
-    let product;
-    for (prod of products) {
-      if (prod.prodId == req.params.id) {
-        product = prod;
-        break;
-      }
-    }
-    res.render("productDescription", { selectedProduct: product });
+    db.Product.findByPk(req.params.id, {
+      include: [
+          {association: "color" }, 
+          {association: "prod_size" }, 
+          {association: "prod_category" }, 
+          {association: "prod_image" }, 
+          {association: "prod_price" }
+      ]
+  })
+      .then((products) => { 
+          let prodJson = JSON.parse(JSON.stringify(products));
+          let selectedProduct = {
+            prodId:       prodJson.id_product,
+            nombre:       prodJson.brand,
+            descripcion:  prodJson.description,
+            precio:       prodJson.prod_price[0].price,
+            imagen:       prodJson.prod_image[0].name,
+            categoria:    prodJson.prod_category.description,
+            medidas:      (prodJson.prod_size.type ? 'inch' : 'cm'),
+            alto:         prodJson.prod_size.height,
+            ancho:        prodJson.prod_size.width, 
+            profundidad:  prodJson.prod_size.depth, 
+            color:        prodJson.color.name
+          };
+          console.log(selectedProduct);
+          res.render("productDescription", { selectedProduct });
+      })
+      .catch((error) => res.send("Ups, se produjo un error Detail-> " + error));
+  },
+  search: function(req, res) {     
+    db.Product.findAll({
+            include: [
+                {association: "prod_image" }, 
+                {association: "prod_price" }
+            ],
+            where: {
+              // busca ya sea por el campo 'brand' como por 'description'
+              [Op.or]: [
+                {brand:        { [Op.like]: '%' + req.query.keyword + '%' }},
+                {description:  { [Op.like]: '%' + req.query.keyword + '%' }}
+              ]
+          }
+        })
+        .then(products =>{
+          res.render('productList', { products: products} )
+        })
+        .catch((error) => res.send("Ups, se produjo un error Search-> " + error));
   },
   create: function (req, res) {
-    // console.log("estoy en el CREATE");
-    // res.render("product_create");
     let promProduct = db.Product.findAll();
     let promColor = db.Color.findAll();
     let promProdCat = db.ProdCategory.findAll();
@@ -112,13 +148,13 @@ const controlProducts = {
             id_product: product.id_product
         })
       })
-    //     .then(function(product) {         
+        .then(function(product2) {         
           
-    //     db.ProdImage.create({
-    //       name: img,
-    //       id_product: product.id_product
-    //   })
-    // })
+        db.ProdImage.create({
+          name: img,
+          id_product: product2.id_product
+      })
+    })
         .then(() => {
           return res.redirect("/products/list");
         })

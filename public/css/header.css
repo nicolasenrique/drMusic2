@@ -7,6 +7,23 @@
 .main-header-top-bar {
     width: 65%;
   }*/
+  .search-container button {
+    float: right;
+    padding: 6px;
+    /* margin-top: 1px; */
+    margin-right: 16px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .search-container input[type=text] {
+    padding: 6px;
+    /* margin-top: 8px; */
+    font-size: 17px;
+    border: none;
+  }
 .main-header {
   background-color: #df1304;
   padding: 7px;

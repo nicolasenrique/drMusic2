@@ -15,11 +15,19 @@
 
   <nav class="main-navbar">
     <ul class="left-navbar">
-      <li><a href="#">Guitarras/Bajos</a></li>
+      <li><a href="#">Guitarras</a></li>
       <li><a href="#">Baterias</a></li>
       <li><a href="#">Teclados</a></li>
       <li><a href="/products/create">Crear Producto</a></li>
     </ul>
+
+    <div class="search-container">
+      <form action="/products/search">
+        <input type="text" placeholder="Buscar.." name="keyword">
+        <button type="submit"><i class="fa fa-search"></i></button>
+      </form>
+    </div>
+
 
     <ul class="right-navbar">
       <% if (locals.isLogged) { %>

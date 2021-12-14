@@ -24,13 +24,13 @@ var upload = multer({ storage: storage });
 
 router.get("/list",                               productsController.list); // Sugerencia Nico router.get("/", productsController.list);
 router.get("/create",   authAdminMiddleware,      productsController.create);
-router.get("/:id",                                productsController.detail);
 router.post("/create",  upload.single("img"),     productsController.store);
 router.get('/:id/edit', authAdminMiddleware,      productsController.edit);
 router.put('/:id/update',   upload.single('imagen'),  productsController.update);
 router.get('/:id/delete', authAdminMiddleware,    productsController.formDelete);
 router.delete('/:id/delete',authAdminMiddleware,  productsController.delete);
-
+router.get("/search",                             productsController.search);
+router.get("/:id",                                productsController.detail);
 
 
 
