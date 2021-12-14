@@ -146,21 +146,12 @@ const controlProducts = {
             id_product: product.id_product
         }); return product
       })
-<<<<<<< HEAD
-        .then(function(product2) {         
-          
-        db.ProdImage.create({
-          name: img,
-          id_product: product2.id_product
-      })
-=======
         .then((product)=> {         
           console.log(product)
           db.ProdImage.create({
           name: img,
           id_product: product.id_product
       }); return product
->>>>>>> fdf8e76b98cc8be3c265fd0460e07eec76323aca
     })
         .then(() => {
           return res.redirect("/products/list");
