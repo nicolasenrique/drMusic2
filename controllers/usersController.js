@@ -92,6 +92,7 @@ const controlUsers = {
 
       if (isOkThePassword) {
         delete userToLogin.password;
+        // console.log('userToLogin: ' + JSON.stringify(userToLogin));
         req.session.userLogged = userToLogin; //si todo esta bien, antes de redirigir a profile, quiero guardar el usuario en session
 
         if (req.body.recordarme != undefined) {
@@ -124,15 +125,20 @@ const controlUsers = {
 
         if (isOkThePassword) {
 
-          delete userJson[0].password;
-          req.session.userLogged = userJson[0]; //si todo esta bien, antes de redirigir a profile, quiero guardar el usuario en session
+          let userLoggedAux = { 
+            firstName:  userJson[0].first_name,
+            email:      userJson[0].email,
+            rol:        userJson[0].category.name,
+            estado:     userJson[0].status.type,
+            avatar:     userJson[0].avatar
+          };
+          // console.log('Aux: '+ JSON.stringify(userLoggedAux));
+          req.session.userLogged = userLoggedAux; 
   
           if (req.body.recordarme != undefined) {
             // si el usuario tildó el checkbox 'recordarme' guarda en la cookie el valor del usuario
-            res.cookie("recordarme", userJson[0], { maxAge: 60000 });
+            res.cookie("recordarme", userLoggedAux, { maxAge: 60000 });
           }
-
-          console.log('userJson[0]: '+userJson[0]);
           // res.render("userProfile");
           return res.redirect("/users/profile");
         }
