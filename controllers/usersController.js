@@ -4,6 +4,7 @@ const bcryptjs = require("bcryptjs");
 const usersFilePath = path.join(__dirname, "../data/usuarios.json");
 const users = JSON.parse(fs.readFileSync(usersFilePath, "utf-8"));
 const User = require("../models/Users");
+const UserDb = require("../models/UsersDb");
 
 // acceso a BD
 let db = require("../database/models");
@@ -107,6 +108,66 @@ const controlUsers = {
         },
       },
     });
+  },  
+  loginProcessDb: function (req, res) {
+    let userToLogin =  Promise.resolve(UserDb.findByEMail(req.body.email));
+
+    userToLogin.then((value)=> {
+      userJson = JSON.parse(JSON.stringify(value));
+
+
+      if (userJson.length > 0) {
+        let isOkThePassword = bcryptjs.compareSync(
+          req.body.password,
+          userJson[0].password
+        );
+
+        if (isOkThePassword) {
+
+          delete userJson[0].password;
+          req.session.userLogged = userJson[0]; //si todo esta bien, antes de redirigir a profile, quiero guardar el usuario en session
+  
+          if (req.body.recordarme != undefined) {
+            // si el usuario tildó el checkbox 'recordarme' guarda en la cookie el valor del usuario
+            res.cookie("recordarme", userJson[0], { maxAge: 60000 });
+          }
+
+          console.log('userJson[0]: '+userJson[0]);
+          // res.render("userProfile");
+          return res.redirect("/users/profile");
+        }
+
+
+      }; 
+      return res.render("login", {
+        errors: {
+          email: {
+            msg: "Las credenciales son inválidas",
+          },
+        },
+      });
+
+
+      // if (value2.length > 0) {
+      //   console.log('hay valores!!')
+      //   console.log('value2[0].password: ' + value2[0].password);
+      //   console.log('value str: ' + value);
+      //   console.log('value objt: ' + value2[0]);
+      //   res.send(value2);
+      // } else {
+      //   console.log('NO hay valores');
+      //   res.send('No hay valores');
+      // }
+
+
+      
+
+    });
+
+    
+    // res.send('userToLogin');
+    //
+
   },
   profile: function (req, res) {
     return res.render("userProfile", {
@@ -142,7 +203,7 @@ const controlUsers = {
   logout: function (req, res) {
     req.session.destroy(); // Este método borra cualquier cosa que esté en session
     return res.redirect("/");
-  },
+  }
 };
 
 module.exports = controlUsers;
