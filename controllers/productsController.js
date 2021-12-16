@@ -143,7 +143,7 @@ const controlProducts = {
             creation_date:Date(),
             modif_date: Date(),
             active: 1,
-            id_product: product.id_product
+            id_product: product.id_product,
         }); return product
       })
         .then((product)=> {         
@@ -153,6 +153,22 @@ const controlProducts = {
           id_product: product.id_product
       }); return product
     })
+    .then((product)=> {         
+      console.log(product)
+      db.ProdSize.create({
+      type: req.body.categoria,
+      height: req.body.alto,
+      width: req.body.ancho,
+      depth: req.body.profundidad,
+  }); return product
+})
+      .then((product)=> {         
+        console.log(product)
+        db.Product.create({
+        id_prod_size: product.id_product_size,
+}); return product
+})
+    
         .then(() => {
           return res.redirect("/products/list");
         })
