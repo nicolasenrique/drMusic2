@@ -132,7 +132,6 @@ const controlUsers = {
             estado:     userJson[0].status.type,
             avatar:     userJson[0].avatar
           };
-          // console.log('Aux: '+ JSON.stringify(userLoggedAux));
           req.session.userLogged = userLoggedAux; 
   
           if (req.body.recordarme != undefined) {
@@ -154,20 +153,6 @@ const controlUsers = {
       });
 
 
-      // if (value2.length > 0) {
-      //   console.log('hay valores!!')
-      //   console.log('value2[0].password: ' + value2[0].password);
-      //   console.log('value str: ' + value);
-      //   console.log('value objt: ' + value2[0]);
-      //   res.send(value2);
-      // } else {
-      //   console.log('NO hay valores');
-      //   res.send('No hay valores');
-      // }
-
-
-      
-
     });
 
     
@@ -176,9 +161,18 @@ const controlUsers = {
 
   },
   profile: function (req, res) {
-    return res.render("userProfile", {
-      user: req.session.userLogged,
-    });
+    let months = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Agos", "Sep", "Oct", "Nov", "Dic"];
+    let userToLogin =  Promise.resolve(UserDb.findByEMail(req.session.userLogged.email));
+    userToLogin.then((user)=> {
+    let now = new Date();
+    user[0].fecha_creacion      = user[0].creation_date.getDay() + '-'+ months[user[0].creation_date.getMonth()] + '-'+ user[0].creation_date.getFullYear();  
+    user[0].fecha_ultimo_login  = now.getDay() + '-'+ months[now.getMonth()] + '-'+ now.getFullYear();   
+      res.render('userProfile', { userInfo : user});
+    })
+    
+    // return res.render("userProfile", {
+    //   user: req.session.userLogged,
+    // });
   },
   edit: function (req, res) {
 

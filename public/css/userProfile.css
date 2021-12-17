@@ -1,30 +1,93 @@
 * {
-  box-sizing: border-box;
-  margin: 0px;
-  padding: 0px;
-}
-body {
-  font-family: "Lato", sans-serif;
-  background-color: #f2ede4;
-}
-.main-body{
-  padding: 10px;
-}
-.rounded-circle p {
   margin: 0;
+  padding: 0
 }
-.rounded-circle {
-  background-color: #f2ede4;
-  display: inline-block;
-  border-radius: 50%;
+
+body {
+  background-color: #F2EDE4;
+  font-family: "Lato", sans-serif;
+}
+
+
+h2 {
+  font-size: 24px;
+}
+.card {
+  width: 350px;
+  background-color: #efefef;
+  border: none;
+  cursor: pointer;
+  transition: all 0.5s
+}
+
+.image img {
+  transition: all 0.5s
+}
+
+.card:hover .image img {
+  transform: scale(1.5)
+}
+
+.btn {
+  height: 140px;
+  width: 140px;
+  border-radius: 50%
+}
+
+.name {
+  font-size: 22px;
+  font-weight: bold
+}
+
+.idd {
+  font-size: 14px;
+  font-weight: 600
+}
+
+.idd1 {
+  font-size: 12px
+}
+
+.number {
+  font-size: 22px;
+  font-weight: bold
+}
+
+.follow {
+  font-size: 12px;
+  font-weight: 500;
+  color: #444444
+}
+
+.btn1 {
+  height: 40px;
   width: 150px;
-  height: 150px;
-  padding-left: 10px;
-  box-sizing: border-box;
+  border: none;
+  background-color: #000;
+  color: #aeaeae;
+  font-size: 15px
 }
-.lista-datos {
-  list-style-type: none;
+
+.text span {
+  font-size: 13px;
+  color: #545454;
+  font-weight: 500
 }
-.datos {
-  margin-left: 10px;
+
+.icons i {
+  font-size: 19px
+}
+
+hr .new1 {
+  border: 1px solid
+}
+
+.join {
+  font-size: 14px;
+  color: #a0a0a0;
+  font-weight: bold
+}
+
+.date {
+  background-color: #ccc
 }
