@@ -45,7 +45,7 @@ module.exports = function (sequelize, dataTypes) {
         });
         Product.belongsTo(models.ProdSize, {
             as: "prod_size",
-            foreignKey: "id_product"
+            foreignKey: "id_prod_size"
         });
         Product.hasMany(models.ProdPrice, {
             as: "prod_price",

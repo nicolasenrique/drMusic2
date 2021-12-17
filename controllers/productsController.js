@@ -102,30 +102,14 @@ const controlProducts = {
     if (req.file != undefined) {
       img = req.file.filename;
     }
-    // prodToCreate.prodId = products[products.length - 1].prodId + 1;
-    // prodToCreate.nombre = req.body.name;
-    // prodToCreate.descripcion = req.body.descripcion;
-    // prodToCreate.precio = req.body.precio;
-    // prodToCreate.imagen = img;
-    // prodToCreate.categoria = req.body.categoria;
-    // prodToCreate.medidas = req.body.medidas;
-    // prodToCreate.alto = req.body.alto;
-    // prodToCreate.ancho = req.body.ancho;
-    // prodToCreate.profundidad = req.body.profundidad;
-    // prodToCreate.color = req.body.color;
-    // prodToCreate.fechaCreacion = Date();
-    // prodToCreate.fechaModificacion = null;
-    // products.push(prodToCreate);
-    // //console.log(prodToCreate);
-    // let productsJSON = JSON.stringify(products, null, 2);
-    // fs.writeFileSync(
-    //   path.join(__dirname, "../data/productos.json"),
-    //   productsJSON
-    // );
-    // res.redirect("/products/list");
-
-
-
+  db.ProdSize.create({
+    type: req.body.categoria,
+    height: req.body.alto,
+    width: req.body.ancho,
+    depth: req.body.profundidad
+})
+.then((size)=> {
+    console.log('id tamaño' + size.id_prod_size);
     db.Product.create({
         description: req.body.descripcion,
         brand: req.body.name,
@@ -134,48 +118,34 @@ const controlProducts = {
         active: 1,
         id_colors: req.body.color,
         id_prod_category: req.body.categoria,
-      })
-      
-      .then((product)=> {         
-          console.log(product)
-          db.ProdPrice.create({
-            price:req.body.precio,
-            creation_date:Date(),
-            modif_date: Date(),
-            active: 1,
-            id_product: product.id_product,
-        }); return product
-      })
-        .then((product)=> {         
-          console.log(product)
-          db.ProdImage.create({
-          name: img,
-          id_product: product.id_product
-      }); return product
+        id_prod_size: size.id_prod_size
     })
-    .then((product)=> {         
-      console.log(product)
-      db.ProdSize.create({
-      type: req.body.categoria,
-      height: req.body.alto,
-      width: req.body.ancho,
-      depth: req.body.profundidad,
+  .then((product)=> {         
+    console.log(product)
+    db.ProdPrice.create({
+      price:req.body.precio,
+      creation_date:Date(),
+      modif_date: Date(),
+      active: 1,
+      id_product: product.id_product,
   }); return product
 })
-      .then((product)=> {         
-        console.log(product)
-        db.Product.create({
-        id_prod_size: product.id_product_size,
+  .then((product)=> {         
+    console.log(product)
+    db.ProdImage.create({
+    name: img,
+    id_product: product.id_product
 }); return product
-})
-    
-        .then(() => {
-          return res.redirect("/products/list");
-        })
-        .catch(function(error){
-          res.send(error)         
-        })  
+})  
+  .then(() => {
+    return res.redirect("/products/list");
+  })
+  .catch(function(error){
+    res.send(error)         
+  })  
+})  
   },
+
   //
   edit: (req, res) => {
 
