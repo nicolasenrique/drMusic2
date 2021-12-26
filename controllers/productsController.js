@@ -37,17 +37,18 @@ const controlProducts = {
   })
       .then((products) => { 
           let prodJson = JSON.parse(JSON.stringify(products));
+          console.log(prodJson)
           let selectedProduct = {
             prodId:       prodJson.id_product,
             nombre:       prodJson.brand,
             descripcion:  prodJson.description,
-            precio:       prodJson.prod_price[0].price,
+            precio:       (prodJson.prod_price[0].price),
             imagen:       prodJson.prod_image[0].name,
             categoria:    prodJson.prod_category.description,
-            medidas:      (prodJson.prod_size.type ? 'inch' : 'cm'),
-            alto:         prodJson.prod_size.height,
-            ancho:        prodJson.prod_size.width, 
-            profundidad:  prodJson.prod_size.depth, 
+            // medidas:      (prodJson.prod_size.type ? 'inch' : 'cm'),
+            // alto:         prodJson.prod_size.height,
+            // ancho:        prodJson.prod_size.width, 
+            // profundidad:  prodJson.prod_size.depth, 
             color:        prodJson.color.name
           };
           console.log(selectedProduct);
