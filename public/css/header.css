@@ -2,6 +2,7 @@
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
+  font-family: "Lato", sans-serif;
 }
 /*
 .main-header-top-bar {
@@ -53,6 +54,7 @@
   text-align: center;
   align-items: center;
   color: #0d0d0d;
+  font-size: 22px !important;
 }
 
 .main-navbar ul {
@@ -112,7 +114,8 @@
 
 .main-navbar ul {
   display: flex;
-  align-items: center;
+  align-items: center !important;
+  text-align: center !important;
 }
 
 .main-navbar li {
