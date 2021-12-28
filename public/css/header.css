@@ -21,11 +21,6 @@
     color: #0d0d0d;
   }
 
-  /* .search-container input[type=text] {
-    padding: 6px;
-    font-size: 17px;
-    border: none;
-  } */
 
   .search2 {
     padding: 6px;
@@ -57,6 +52,7 @@
   font-weight: 400;
   text-align: center;
   align-items: center;
+  color: #0d0d0d;
 }
 
 .main-navbar ul {
