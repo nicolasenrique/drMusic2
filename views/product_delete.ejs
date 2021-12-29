@@ -16,10 +16,10 @@
       <%- include('./partials/header') %>
       <!--FIN DEL HEADER-->
     </div>
-      <div class="column-3">2</div>
+      <div class="column-3 recuadro">2</div>
       <div class="column-3">
           <div class="testbox">
-            <form action="/products/<%=product.id_product%>/delete?_method=DELETE" method="POST" enctype="multipart/form-data">
+            <form class="form_admin" action="/products/<%=product.id_product%>/delete?_method=DELETE" method="POST" enctype="multipart/form-data">
               <div class="banner">
                 <h1>Borrado de productos</h1>
               </div>
@@ -145,9 +145,9 @@
             </form>
           </div>
       </div>
-      <div class="">4</div>
-      <div class="">5</div>
-      <div class="">6</div>  
+      <div class="recuadro">4</div>
+      <div class="recuadro">5</div>
+      <div class="recuadro">6</div>  
       <div class="rows-3">
         <!--INICIO DEL FOOTER-->
         <%- include('./partials/footer') %>
