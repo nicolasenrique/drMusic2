@@ -35,6 +35,9 @@ background: #fff;
 box-shadow: 0 0 30px 0 #a37547; 
 background-color: #F2EDE4;
 }
+.errores {
+  color:red
+}
 .banner {
 position: relative;
 height: 230px;
@@ -213,3 +216,4 @@ width: calc(50% - 8px);
         max-width: 900px;        
         margin: auto;
     }
+  }

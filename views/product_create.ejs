@@ -8,6 +8,7 @@
     <title>Administración de Productos</title>
     <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">  -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&display=swap">
+    <script src="/js/productAddValidation.js"></script>
   </head>
  <body>
     <div class="grid-container">
@@ -16,10 +17,13 @@
       <%- include('./partials/header') %>
       <!--FIN DEL HEADER-->
     </div>
-      <div class="column-3">2</div>
+      <div class="column-3"><div class="errores">
+        <ul></ul>
+      </div></div>
       <div class="column-3">
           <div class="testbox">
-            <form action="/products/create" method="POST" enctype="multipart/form-data">
+            
+            <form action="/products/create" method="POST" enctype="multipart/form-data" class="formProduct" >
               <div class="banner">
                 <h1>Crear producto</h1>
               </div>
@@ -33,7 +37,7 @@
                   </div>
                   <div>
                     <p>Nombre</p>
-                    <input type="text" id ="name" name="name" placeholder="Nombre"><br>
+                    <input type="text" id ="productName" name="name" placeholder="Nombre"><br>
                   </div>
                   <div class="item">
                     <p>Precio</p>
@@ -41,18 +45,18 @@
                   </div>
                   <div class="item">
                     <p>Cantidad</p>
-                    <input type="number" name="cantidad" placeholder="0" min="0" max="10">
+                    <input type="number" name="cantidad" placeholder="0" min="0" max="10" id="quantity">
                   </div>                   
                 </div>
                 <div class="item">
                   <p>Descripción</p>
-                  <textarea name="descripcion"rows="3" placeholder="Incluya la descripción general del producto"></textarea>
+                  <textarea name="descripcion"rows="3" placeholder="Incluya la descripción general del producto" id="descripcion"></textarea>
                 </div>          
                 <div class="item">
                   <p>Imagen asociada</p>
                   <!-- <input type="email" name="email"/> -->
                   <!-- <input type="file" id="img" name="img" accept="image/*"> -->
-                  <input type="file" name="img" accept="image/*">
+                  <input type="file" name="img" accept="image/*" id="img">
                 </div>                
                 <div class="item">
                   <p>Categoría</p>
@@ -71,9 +75,9 @@
                       <option value="inch">Pugadas</option>
                       <option value="metro">Metro</option>
                     </select>                            
-                    <input type="number" name="alto" placeholder="Alto">
-                    <input type="number" name="ancho" placeholder="Ancho">
-                    <input type="number" name="profundidad" placeholder="Profundidad">
+                    <input type="number" name="alto" placeholder="Alto" id="alto">
+                    <input type="number" name="ancho" placeholder="Ancho" id="ancho">
+                    <input type="number" name="profundidad" placeholder="Profundidad" id="profundidad">
                   </div>
                 </div>
                 <div class="item">
