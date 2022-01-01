@@ -30,51 +30,81 @@
     <div>
       <p class="message-create">Crea tu cuenta</p>
     </div>
-
-    <form action="/users/register" method="POST" enctype="multipart/form-data">
+    
+    <form action="/users/register" method="POST" class="register">
       <div class="complete-name">
-        <input type="text" name="name" placeholder="Nombre" class="name" />
-        <input
-          type="text"
-          name="lastName"
-          placeholder="Apellido"
-          class="lastName"
-        />
-      </div>
-      <div class="this">
-        <i class="fas fa-exclamation-triangle"></i>
-        <p>No puede estar vacío</p>
+        <div class="input-errormsg">
+          <input type="text" name="name" placeholder="Nombre" class="name" value="<%= locals.oldData ? oldData.name : null %>">
+          <% if (locals.errors && errors.name) { %>
+          <div class="text-danger">
+          <%= errors.name.msg %>
+          </div>
+          <% } %>
+          <section class="errorName">
+            <p>
+            
+            </p>
+          </section>          
+        </div>
+        <div class="input-errormsg">
+          <input type="text" name="lastName" placeholder="Apellido" class="lastName" value="<%= locals.oldData ? oldData.lastName : null %>">
+          <% if (locals.errors && errors.lastName) { %>
+          <div class="text-danger">
+          <%= errors.lastName.msg %>
+          </div>
+          <% } %>
+          <section class="errorLastName">
+            <p>
+            
+            </p>
+          </section>   
+        </div>
       </div>
       <div class="complete-email">
-        <input
-          type="email"
-          name="email"
-          placeholder="Dirección de Email"
-          class="mail"
-        />
-      </div>
+        <div class="input-errormsg">
+          <input type="text" name="email" placeholder="Dirección de Email" class="mail" value="<%= locals.oldData ? oldData.email : null %>">
+          <% if (locals.errors && errors.email) { %>
+          <div class="text-danger">
+          <%= errors.email.msg %>
+          </div>
+          <% } %>
+          <section class="errorEmail">
+            <p>
+            
+            </p>
+          </section>   
+        </div>
+        </div>
+
       <div class="complete-password">
-        <input
-          type="password"
-          name="password"
-          placeholder="Contraseña"
-          class="password"
-        />
-      </div>
+        <div class="input-errormsg">
+          <input type="password" name="password" placeholder="Contraseña" class="password">
+          <% if (locals.errors && errors.password) { %>
+          <div class="text-danger">
+          <%= errors.password.msg %>
+          </div>
+          <% } %>
+          <section class="errorPassword">
+            <p>
+            
+            </p>
+          </section>    
+        </div>
+        </div>
       <div class="complete-picture">
-        <input
-          type="file"
-          name="img"
-          accept="image/*"
-          class="avatar"
-          id="avatar1"
-        />
+        <input type="file" name="img" class="avatar" id="avatar1">
+        <% if (locals.errors && errors.img) { %>
+          <div class="text-danger">
+              <%= errors.img.msg %>
+          </div>
+          <% } %> 
       </div>
       <div class="create-account-buttom">
         <button type="submit" name="create-account" class="create-account-tex">
           CREAR CUENTA
         </button>
       </div>
+    </form>    
 
       <div class="by">
         <p class="by-low">Al continuar aceptas nuestra</p>
@@ -86,10 +116,11 @@
         <p class="already-low">¿Ya tenés una cuenta?</p>
         <a href="/users/login"><p class="already-low-red">Ingresá ahora</p></a>
       </div>
-    </form>
+
 
     <!--INICIO DEL FOOTER-->
     <%- include('./partials/footer') %>
     <!--FIN DEL FOOTER-->
+    <script src="/js/registerFormValidation.js"></script>
   </body>
 </html>
