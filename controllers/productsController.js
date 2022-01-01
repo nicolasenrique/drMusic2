@@ -10,6 +10,8 @@ const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
 
 const toThousand = (n) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
+const {validationResult} = require("express-validator")
+// Validacion Backend
 function grabaRegistros(products) {
   let prdoctsJSON = JSON.stringify(products, null, 2);
   fs.writeFileSync(productsFilePath, prdoctsJSON);
@@ -99,6 +101,12 @@ const controlProducts = {
   store: function (req, res) {
     // const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
     // let prodToCreate = {};
+
+    let errors = validationResult(req);
+    if (errors.isEmpty()){
+
+    
+
     let img = "default-img.png";
     if (req.file != undefined) {
       img = req.file.filename;
@@ -144,7 +152,10 @@ const controlProducts = {
   .catch(function(error){
     res.send(error)         
   })  
-})  
+})
+} else{
+  return res.render("product_create_errors", {errors:errors.array()})
+} 
   },
 
   //
@@ -172,37 +183,10 @@ const controlProducts = {
   },
   //
   update: (req, res) => {
-    //
-    // const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
-    // let prodToUpadate = {};
-    // for (i = 0; i < products.length; i++) {
-    //   //
-    //   if (products[i].prodId == req.body.prodId) {
-    //     prodToUpadate.prodId = req.body.prodId;
-    //     prodToUpadate.nombre = req.body.nombre;
-    //     prodToUpadate.descripcion = req.body.descripcion;
-    //     prodToUpadate.precio = req.body.precio;
-    //     if (req.file) {
-    //       prodToUpadate.imagen = req.file.filename;
-    //     } else {
-    //       prodToUpadate.imagen = products[i].imagen;
-    //     }
-    //     prodToUpadate.categoria = req.body.categoria;
-    //     prodToUpadate.medidas = req.body.medidas;
-    //     prodToUpadate.alto = req.body.alto;
-    //     prodToUpadate.ancho = req.body.ancho;
-    //     prodToUpadate.profundidad = req.body.profundidad;
-    //     prodToUpadate.color = req.body.color;
-    //     prodToUpadate.fechaCreacion = products[i].fechaCreacion;
-    //     prodToUpadate.fechaModificacion = new Date();
-    //     products[i] = prodToUpadate;
-    //     break;
-    //   }
-    // }
-    // grabaRegistros(products);
-    // res.render("productDescription", { selectedProduct: prodToUpadate });
-      
-    //
+
+  
+    
+
     db.Product.update(
       {         
         description: req.body.descripcion,
@@ -217,29 +201,26 @@ const controlProducts = {
         where: { id_product: req.params.id}
         }
     )
-    .then(function(product) {         
-          
-      db.ProdPrice.update({
-        price:req.body.precio,
-        creation_date:Date(),
-        modif_date: Date(),
-        active: 1,
-        id_product: product.id_product
-    },
+    .then(function() {              
+        db.ProdImage.update({
+        name: req.file.filename  
+      },    
     {
       where: { id_product: req.params.id}
       }
-    )
-  })
-  
-      .then(function(){
-        res.redirect("/products/list")
-    })
-    .catch(function(){
-      res.send("hay errores")
-    }) 
-   
-// })
+    )}) 
+    db.ProdPrice.update({
+      price:req.body.precio,
+      creation_date:Date(),
+      modif_date: Date(),
+      active: 1,
+    },    
+  {
+    where: { id_product: req.params.id}
+    }
+  )
+ 
+  res.redirect("/products/list")  
   },
   delete: (req, res) => {
     //

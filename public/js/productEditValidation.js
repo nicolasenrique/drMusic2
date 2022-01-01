@@ -20,18 +20,6 @@ window.addEventListener("load",function(){
             errores.push("El campo DESCRIPCION debe tener más de 20 caracteres");
         }
 
-        let campoAncho = document.querySelector("#ancho");
-        if(campoAncho.value == ""){
-            errores.push("El campo ANCHO debe completarse");
-        }
-        let campoLargo = document.querySelector("#profundidad");
-        if(campoLargo.value == ""){
-            errores.push("El campo PROFUNDIDAD debe completarse");
-        }
-        let campoAlto = document.querySelector("#alto");
-        if(campoAlto.value == ""){
-            errores.push("El campo ALTO debe completarse");
-        }
 
         let campoImagen = document.querySelector("#img");
         var isValid = /.(jpg|jpeg|png|gif)$/i.test(campoImagen.value);
