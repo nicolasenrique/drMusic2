@@ -1,4 +1,5 @@
 const fs = require("fs");
+const { validationResult } = require('express-validator');
 const path = require("path");
 const bcryptjs = require("bcryptjs");
 const usersFilePath = path.join(__dirname, "../data/usuarios.json");
@@ -27,54 +28,45 @@ const controlUsers = {
       .catch((error) => res.send(error));
 
     res.render("register");
-    // res.render("register");
   },
   store: function (req, res) {
-    // const users = JSON.parse(fs.readFileSync(usersFilePath, "utf-8"));
-    let encryptedPass = bcryptjs.hashSync(req.body.password, 10);
-    // let userToCreate = {};
-    let img = "default-img.png";
-    if (req.file !== undefined) {
-      img = req.file.filename;
-    }
-    // data mapping
-    // userToCreate.userId             = users[users.length - 1].userId + 1;
-    // userToCreate.firstName          = req.body.name;
-    // userToCreate.lastName           = req.body.lastName;
-    // userToCreate.email              = req.body.email;
-    // userToCreate.telCelular         = null;
-    // userToCreate.telAlternativo     = null;
-    // userToCreate.password           = encryptedPass;
-    // userToCreate.rol                = 'user';
-    // userToCreate.estado             = 'activo';
-    // userToCreate.avatar             = img;
-    // userToCreate.fechaCreacion      = Date();
-    // userToCreate.fechaModificacion  = null;
-    // userToCreate.fechaUltimoLogin   = null;
-    //
-    // users.push(userToCreate);
-    // console.log(userToCreate);
-    // let usersJSON = JSON.stringify(users, null, 2);
-    // fs.writeFileSync(path.join(__dirname, "../data/usuarios.json"), usersJSON);
-    // res.redirect("/users/login");
-    //
-    db.User.create({
-      first_name: req.body.name,
-      last_name: req.body.lastName,
-      email: req.body.email,
-      password: encryptedPass,
-      phone_number: null,
-      address: null,
-      creation_date: null,
-      last_login: null,
-      id_user_category: 1,
-      id_user_status: 1,
-      avatar: img,
-    })
-      .then(() => {
-        return res.redirect("/users/login");
+    //Primero me traigo los resultados de la validación del formulario
+
+    const resultValidation = validationResult(req);
+
+    console.log(resultValidation);
+
+    if (resultValidation.isEmpty()) {
+      //sino hay errores, seguimos adelante
+      let encryptedPass = bcryptjs.hashSync(req.body.password, 10);
+      // let userToCreate = {};
+      let img = "default-img.png";
+      if (req.file !== undefined) {
+        img = req.file.filename;
+      }
+
+      db.User.create({
+        first_name: req.body.name,
+        last_name: req.body.lastName,
+        email: req.body.email,
+        password: encryptedPass,
+        phone_number: null,
+        address: null,
+        creation_date: null,
+        last_login: null,
+        id_user_category: 1,
+        id_user_status: 1,
+        avatar: img,
       })
-      .catch((error) => res.send(error));
+        .then(() => {
+          return res.redirect("/users/login");
+        })
+        .catch((error) => res.send(error));
+
+    } else {
+      //Hay errores, entonces volvemos al formulario
+      return res.render('register', { errors: resultValidation.mapped(), oldData: req.body });
+    }
   },
   login: function (req, res) {
     res.render("login");
