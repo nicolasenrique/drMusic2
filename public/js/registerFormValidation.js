@@ -6,6 +6,7 @@ window.onload = function(){
     let fieldEmail = document.querySelector('input.mail');
     let fieldPassword = document.querySelector('input.password');
     let regex = new RegExp("([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])");
+    let regexPassword = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$");
 
     //Validando el campo Nombre
     
@@ -26,6 +27,7 @@ window.onload = function(){
         if (fieldName.value.length < 2 ) {
 
             errorName.innerHTML = "El campo nombre de poseer al menos 2 caracteres";  
+            
 
         } else {
 
@@ -114,6 +116,21 @@ window.onload = function(){
         }
                      
     }
+/*
+    fieldPassword.onblur  = function () {
+    
+        if (regexPassword.test(fieldPassword.value) == false) {
+
+            errorPassword.innerHTML = "debes escribir un email válido";
+            console.log(regexPassword)
+
+        } else {
+    
+            errorPassword.innerHTML = "";
+            console.log(regexPassword.test(fieldPassword.value))
+        }
+                     
+    } */
     
     /* 
     *** La forma que probé inicialmente, la misma funcionaba,
