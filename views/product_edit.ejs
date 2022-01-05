@@ -26,7 +26,7 @@
           <div class="testbox">
             <form class="form_admin" action="/products/<%=product.id_product%>/update?_method=PUT" method="POST" enctype="multipart/form-data" id="formEdit">
               <div class="banner">
-                <h1>Edición de productos</h1>
+                <h1 class="h1_form">Edición de productos</h1>
               </div>
 
               <div class="item">
@@ -35,34 +35,34 @@
                 <div class="multiple-items">
                   <div>
                     <p>Product ID</p>
-                    <input type="number" name="productId" placeholder="0000000"  value="<%= product.id_product %>">  
+                    <input class="borders input2" type="number" name="productId" placeholder="0000000"  value="<%= product.id_product %>" disabled>  
                   </div>
                   <div>
                     <p>Nombre</p>
-                    <input type="text" id ="productName" name="name" placeholder="Nombre" value="<%= product.description %>" >
+                    <input class="borders input2" type="text" id ="productName" name="name" placeholder="Nombre" value="<%= product.description %>" >
                   </div>
                   <div class="item">
                     <p>Precio</p>
                     
-                    <input type="number" name="precio" placeholder="$ 0.00" value=>
+                    <input class="borders input2"  type="number" name="precio" placeholder="$ 0.00" value=>
                    
                   </div>
                   <div class="item">
                     <p>Cantidad</p>
-                    <input type="number" name="cantidad" placeholder="0" min="0" max="10" disabled>
+                    <input class="borders input2" type="number" name="cantidad" placeholder="0" min="0" max="10" disabled>
                   </div>                   
                 </div>
                 <div class="item">
                   <p>Descripción</p>
                   
-                  <textarea name="descripcion"rows="3" placeholder="Incluya la descripción general del producto" id="descripcion"> </textarea>
+                  <textarea class="borders textarea2" name="descripcion"rows="3" placeholder="Incluya la descripción general del producto" id="descripcion"> </textarea>
                 </div>          
                 <div class="item">
                   <p>Imagen producto</p>
                   <!-- <input type="file" name="img" accept="image/*"> -->
-                  <input type="file" name="img" accept="image/*" id="img">
+                  <input class="borders input2" type="file" name="img" accept="image/*" id="img">
                   <% for (let i = 0 ; i < product.prod_image.length ; i++) { %>
-                  <img src="/img/products/<%=product.prod_image[i].name%>" id="img"  alt="<%=product.prod_image[i].name%>" width="400" height="400">
+                  <img  src="/img/products/<%=product.prod_image[i].name%>" id="img"  alt="<%=product.prod_image[i].name%>" width="400" height="400">
                   <% } %>
                 </div>                
                 <div class="item">
@@ -78,19 +78,19 @@
                     <option value="accesorios" <%= product.categoria  == 'accesorios' ? 'selected' : ''%>>Accesorios</option>
                   </select>
                   --> 
-                  <input type="text" value="<%= product.id_prod_category%>">
+                  <input class="borders input2" type="text" value="<%= product.id_prod_category%>">
                 </div>
                 <div class="item">
                   <p>Medidas</p>
                   <div class="dimensions"> 
-                    <select name="medidas" disabled>
+                    <select class="borders select2" name="medidas" disabled>
                       <option value="cm" <%= product.medidas  == 'cm' ? 'selected' : ''%>>Centimetros</option>
                       <option value="inch" <%= product.medidas  == 'inch' ? 'selected' : ''%>>Pugadas</option>
                       <option value="metro" <%= product.medidas  == 'metro' ? 'selected' : ''%>>Metro</option>
                     </select>                            
-                    <input type="number" name="alto" placeholder="Alto" id="alto" value=<%= product.alto %> >
-                    <input type="number" name="ancho" placeholder="Ancho" id="ancho" value=<%= product.ancho %> >
-                    <input type="number" name="profundidad" placeholder="Profundidad" id="profundidad" value=<%= product.profundidad %> >
+                    <input class="borders input2" type="number" name="alto" placeholder="Alto" id="alto" value=<%= product.alto %> >
+                    <input class="borders input2" type="number" name="ancho" placeholder="Ancho" id="ancho" value=<%= product.ancho %> >
+                    <input class="borders input2" type="number" name="profundidad" placeholder="Profundidad" id="profundidad" value=<%= product.profundidad %> >
                   </div>
                 </div>
                 <div class="item">
@@ -145,9 +145,9 @@
               </div> -->
               <!-- <div class="item"> -->
                 <div class="multiple-items">
-                  <button type="submit" >GUARDAR</button>                
+                  <button class="button2" type="submit" >GUARDAR</button>                
                   <!-- <button type="button" href="/products/list">CANCELAR</button> -->
-                  <a href="/products/list"><button>CANCELAR</button></a>
+                  <a href="/products/list"><button class="button2">CANCELAR</button></a>
                 </div>
               <!-- </div> -->
             </form>
