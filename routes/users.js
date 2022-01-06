@@ -27,7 +27,7 @@ var upload = multer({ storage: storage });
 //Formulario de Register
 
 router.get("/register", usersController.register);
-router.post("/register", /*validations, upload.single("img"),*/ usersController.store);
+router.post("/register", validations, /*upload.single("img"),*/ usersController.store);
 
 //Formulario de Login
 
