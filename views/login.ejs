@@ -30,6 +30,7 @@
           name="email"
           placeholder="Email"
           class="mail"
+          value="<%= (locals.errors &&  old)? old: '' %>"
         />
       </div>
       <% if (locals.errors && errors.email) { %>
@@ -43,6 +44,7 @@
           name="password"
           placeholder="Contraseña"
           class="password"
+          value=""
         />
       </div>
       <div class="sign-in-buttom">
