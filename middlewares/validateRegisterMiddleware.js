@@ -1,22 +1,6 @@
 const express = require('express');
 const { check } = require('express-validator');
-
-/*const validations = [
-    check('name')
-        .notEmpty().withMessage('Tienes que escribir un nombre').bail()
-        .isLength({ min: 2 }).withMessage('El nombre debe tener al menos 2 caracteres'),
-    check('lastName')
-        .notEmpty().withMessage('Tienes que escribir un apellido').bail()
-        .isLength({ min: 2 }).withMessage('El apellido debe tener al menos 2 caracteres'),
-    check('email')
-        .notEmpty().withMessage('Tienes que escribir un email').bail()
-        .isEmail().withMessage('Debes escribir un formato de correo válido'),
-    check('password')
-        .notEmpty().withMessage('Tienes que escribir una contraseña').bail()
-        .isLength({ min: 8 }).withMessage('La contraseña debe tener al menos 8 caracteres')
-]
-
-module.exports = validations;*/
+const path = require("path");
 
 const validations = [
     check('name')
@@ -31,7 +15,7 @@ const validations = [
     check('password')
         .notEmpty().withMessage('Debes completar la contraseña').bail()
         .isLength({ min: 8 }).withMessage('La contraseña debe tener almenos 8 caracteres'),
-    /*check('img').custom((value, { req }) =>{
+    check('img').custom((value, { req }) =>{
         let file = req.file;
         let acceptedExtensions = ['.jpg','.png','.gif'];
 
@@ -44,7 +28,7 @@ const validations = [
         }
         return true;
         }
-    })*/
+    })
 ]    
 
 module.exports = validations;

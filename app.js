@@ -3,6 +3,7 @@ const cookieParser = require('cookie-parser');
 // const logger = require('morgan');
 
 const express = require("express");
+const bodyParser = require("body-parser");
 const session = require('express-session');
 
 const app = express();
@@ -30,8 +31,11 @@ const usersRouter = require("./routes/users");
 const productsRouter = require("./routes/products");
 const carritoRouter = require("./routes/carrito");
 
-app.use(express.urlencoded({extended: false}));
-app.use(express.json());
+//app.use(express.urlencoded({extended: false}));
+//app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 app.use(methodOverride('_method')); // Pasar poder pisar el method="POST" en el formulario por PUT y DELETE
 app.use(cookieParser());
 

@@ -5,6 +5,7 @@ window.onload = function(){
     let fieldLastName = document.querySelector('input.lastName');
     let fieldEmail = document.querySelector('input.mail');
     let fieldPassword = document.querySelector('input.password');
+    let fieldImagen = document.querySelector('input.avatar');
     let regex = new RegExp("([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])");
     let regexPassword = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$");
 
@@ -131,6 +132,36 @@ window.onload = function(){
         }
                      
     } */
+
+    //Validando el campo Imagen
+    
+    let errorImagen = document.querySelector(".errorImagen p");    
+    
+    fieldImagen.addEventListener('mouseover', function () {
+            
+        errorImagen.innerHTML = "Deseas subir una imagen??";        
+    })
+      
+    fieldImagen.onclick  = function () {    
+
+        errorImagen.innerHTML = "Recuerda que los formatos admitidos son JPG, JPEG, PNG y GIF";  
+                   
+    }
+    
+    fieldImagen.onmouseout  = function () {  
+        
+        if (fieldImagen.value.indexOf('.jpg') != -1 || fieldImagen.value.indexOf('.jpeg') !=-1 || fieldImagen.value.indexOf('.gif') !=-1 || fieldImagen.value.indexOf('.png') !=-1) {
+
+            errorImagen.innerHTML = "Bien!!! subiste un formato válido";      
+        
+        } else {
+
+            errorImagen.innerHTML = "El archivo que elegiste no coincide los formatos admitidos (JPG, JPEG, PNG y GIF)"; 
+
+        }              
+    }
+
+
     
     /* 
     *** La forma que probé inicialmente, la misma funcionaba,
