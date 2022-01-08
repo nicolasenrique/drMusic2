@@ -26,7 +26,7 @@
             
             <form class="form_admin" action="/products/create" method="POST"  enctype="multipart/form-data" >
               <div class="banner">
-                <h1>Crear producto</h1>
+                <h1 class="h1_form">Crear producto</h1>
               </div>
              
               <div class="item">
@@ -34,11 +34,11 @@
                 <div class="multiple-items">
                   <div>
                     <p>Product ID</p>
-                    <input type="number" name="productId" placeholder="0000000" disabled>
+                    <input class="borders input2" type="number" name="productId" placeholder="0000000" disabled>
                   </div>
                   <div>
                     <p>Nombre</p>
-                    <input type="text" id ="productName" name="name" placeholder="Nombre"><br>
+                    <input class="borders input2" type="text" id ="productName" name="name" placeholder="Nombre"><br>
                     <% if (locals.errors && errors.name) { %>
                       <div class="text-danger">
                         <%= errors.name.msg %>
@@ -49,16 +49,16 @@
                  
                   <div class="item">
                     <p>Precio</p>
-                    <input type="number" name="precio" placeholder="$ 0.00">
+                    <input class="borders input2"  type="number" name="precio" placeholder="$ 0.00">
                   </div>
                   <div class="item">
                     <p>Cantidad</p>
-                    <input type="number" name="cantidad" placeholder="0" min="0" max="10" id="quantity">
+                    <input class="borders input2" type="number" name="cantidad" placeholder="0" min="0" max="10" id="quantity">
                   </div>                   
                 </div>
                 <div class="item">
                   <p>Descripción</p>
-                  <textarea name="descripcion"rows="3" placeholder="Incluya la descripción general del producto" id="descripcion"></textarea>
+                  <textarea class="borders textarea2" name="descripcion"rows="3" placeholder="Incluya la descripción general del producto" id="descripcion"></textarea>
                   <% if (locals.errors && errors.descripcion) { %>
                     <div class="text-danger">
                       <%= errors.descripcion.msg %>
@@ -69,7 +69,7 @@
                   <p>Imagen asociada</p>
                   <!-- <input type="email" name="email"/> -->
                   <!-- <input type="file" id="img" name="img" accept="image/*"> -->
-                  <input type="file" name="img" accept="image/*" id="img">
+                  <input class="borders input2" type="file" name="img" accept="image/*" id="img">
                   <% if (locals.errors && errors.img) { %>
                     <div class="text-danger">
                       <%= errors.img.msg %>
@@ -78,7 +78,7 @@
                 </div>                
                 <div class="item">
                   <p>Categoría</p>
-                  <select name="categoria" id="" required>
+                  <select class="borders select2" name="categoria" id="" required>
                     <option value="" disabled selected>- Seleccione la categoría - </option>
                     
                     <option value="1">Guitarra</option>
@@ -92,19 +92,19 @@
                 <div class="item">
                   <p>Medidas</p>
                   <div class="dimensions"> 
-                    <select name="medidas" required>
+                    <select class="borders select2" name="medidas" required>
                       <option value="cm">Centimetros</option>
                       <option value="inch">Pugadas</option>
                       <option value="metro">Metro</option>
                     </select>                            
-                    <input type="number" name="alto" placeholder="Alto" id="alto">
-                    <input type="number" name="ancho" placeholder="Ancho" id="ancho">
-                    <input type="number" name="profundidad" placeholder="Profundidad" id="profundidad">
+                    <input class="borders input2" type="number" name="alto" placeholder="Alto" id="alto">
+                    <input class="borders input2" type="number" name="ancho" placeholder="Ancho" id="ancho">
+                    <input class="borders input2" type="number" name="profundidad" placeholder="Profundidad" id="profundidad">
                   </div>
                 </div>
                 <div class="item">
                   <p>Color principal</p>
-                  <select name="color" id="" required>
+                  <select class="borders select2"  name="color" id="" required>
                     <option value="" disabled selected>- Seleccione el color - </option>
                     
                     <option value="1">Silver</option>
@@ -152,21 +152,13 @@
                       <input type="radio" name="color" id="negro" value="negro">
                     </div> -->
                   </div>
-                </div>                  
-              </div>
-              <!-- <div class="item">
-                <p>Precio</p>
-                <input type="number" name="precio" placeholder="$ 0.00">
-              </div>
-              <div class="item">
-                <p>Cantidad</p>
-                <input type="number" name="cantidad" placeholder="0" min="0" max="10">
-              </div> -->
-              <!-- <div class="item"> -->
+                </div> 
                 <div class="multiple-items">
-                  <button type="submit" >GUARDAR</button>                
-                  <button type="cancel" href="/">CANCELAR</button>
-                </div>
+                  <button class="button2" type="submit" >GUARDAR</button>                
+                  <button class="button2" type="cancel" href="/">CANCELAR</button>
+                </div>                
+              </div>
+   
               <!-- </div> -->
             </form>
           </div>

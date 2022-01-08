@@ -98,7 +98,7 @@ const controlUsers = {
       errors: {
         email: {
           msg: "Las credenciales son inválidas",
-        },
+        }
       },
     });
   },  
@@ -139,9 +139,11 @@ const controlUsers = {
       return res.render("login", {
         errors: {
           email: {
-            msg: "Las credenciales son inválidas",
-          },
+            msg: "Las credenciales son inválidas, revisa tu usuario y/o contraseña!",
+            // old: req.body
+          }          
         },
+        old : req.body.email,
       });
 
 
