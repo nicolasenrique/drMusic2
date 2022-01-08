@@ -35,11 +35,11 @@
                 <div class="multiple-items">
                   <div>
                     <p>Product ID</p>
-                    <input type="number" name="productId" placeholder="0000000"  value="<%= product.id_product %>">  
+                    <input type="number" name="productId" placeholder="0000000"  value="<%= product.id_product %>" disabled>  
                   </div>
                   <div>
                     <p>Nombre</p>
-                    <input type="text" id ="productName" name="name" placeholder="Nombre" value="<%= product.description %>" >
+                    <input type="text" id ="productName" name="name" placeholder="Nombre" value="<%= product.brand %>" >
                   </div>
                   <div class="item">
                     <p>Precio</p>
@@ -55,7 +55,7 @@
                 <div class="item">
                   <p>Descripción</p>
                   
-                  <textarea name="descripcion"rows="3" placeholder="Incluya la descripción general del producto" id="descripcion"> </textarea>
+                  <textarea name="descripcion"rows="3" placeholder="Incluya la descripción general del producto" id="descripcion" value=> <%= product.description %> </textarea>
                 </div>          
                 <div class="item">
                   <p>Imagen producto</p>
@@ -78,7 +78,17 @@
                     <option value="accesorios" <%= product.categoria  == 'accesorios' ? 'selected' : ''%>>Accesorios</option>
                   </select>
                   --> 
-                  <input type="text" value="<%= product.id_prod_category%>">
+                  
+                  <select name="categoria" id="" required value="<%= product.id_prod_category%>">
+                    <option value="" disabled selected>- Seleccione la categoría - </option>
+                    
+                    <option value="1">Guitarra</option>
+                    <option value="2">Bajo</option>
+                    <option value="3">Batería</option>
+                    <option value="4">Teclado</option>
+                    <option value="5">Amplificador</option>
+                  
+                </select>
                 </div>
                 <div class="item">
                   <p>Medidas</p>
@@ -88,9 +98,9 @@
                       <option value="inch" <%= product.medidas  == 'inch' ? 'selected' : ''%>>Pugadas</option>
                       <option value="metro" <%= product.medidas  == 'metro' ? 'selected' : ''%>>Metro</option>
                     </select>                            
-                    <input type="number" name="alto" placeholder="Alto" id="alto" value=<%= product.alto %> >
-                    <input type="number" name="ancho" placeholder="Ancho" id="ancho" value=<%= product.ancho %> >
-                    <input type="number" name="profundidad" placeholder="Profundidad" id="profundidad" value=<%= product.profundidad %> >
+                    <input type="number" name="alto" placeholder="Alto" id="alto" value=<%= product.height %> >
+                    <input type="number" name="ancho" placeholder="Ancho" id="ancho" value=<%= product.width %> >
+                    <input type="number" name="profundidad" placeholder="Profundidad" id="profundidad" value="<%= product.depth %>" >
                   </div>
                 </div>
                 <div class="item">
