@@ -7,6 +7,8 @@ const validateCreateProduct = [
         check('descripcion')
         .isLength({ min: 20 }).withMessage('La descripción debe tener al menos 20 caracteres'),
 
+        check('precio')
+        .not().isEmpty().withMessage("Debe introducir un precio"),
 
         check('name')
         .not().isEmpty().withMessage("Debe introducir un nombre")

@@ -8,7 +8,7 @@
     <title>Administración de Productos</title>
     <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">  -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&display=swap">
-    <!-- <script src="/js/productAddValidation.js"></script> -->
+    <script src="/js/productAddValidation.js"></script>
   </head>
  <body>
     <div class="grid-container">
@@ -70,9 +70,9 @@
                   <!-- <input type="email" name="email"/> -->
                   <!-- <input type="file" id="img" name="img" accept="image/*"> -->
                   <input class="borders input2" type="file" name="img" accept="image/*" id="img">
-                  <% if (locals.errors && errors.img) { %>
+                  <% if (locals.errors && errors.name) { %>
                     <div class="text-danger">
-                      <%= errors.img.msg %>
+                      <%= errors.name.msg %>
                   </div>
                   <% } %> 
                 </div>                

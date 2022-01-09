@@ -40,12 +40,24 @@
                   <div>
                     <p>Nombre</p>
                     <input class="borders input2" type="text" id ="productName" name="name" placeholder="Nombre" value="<%= product.brand %>" >
+                    <% if (locals.errors && errors.name) { %>
+                      <div class="text-danger">
+                        <%= errors.name.msg %>
+                        </div>
+                        <% } %>
                   </div>
                   <div class="item">
                     <p>Precio</p>
-                    
-                    <input class="borders input2"  type="number" name="precio" placeholder="$ 0.00" value=>
-                   
+                    <% for (let i = 0 ; i < product.prod_price.length ; i++) { %>
+                    <input class="borders input2"  type="number" name="precio" placeholder="$ 0.00" value="<%= product.prod_price[i].price %>" >
+                    <% } %>
+                    <div>
+                      <% if (locals.errors && errors.precio) { %>
+                        <div class="text-danger">
+                          <%= errors.precio.msg %>
+                          </div>
+                          <% } %>
+                    </div>
                   </div>
                   <div class="item">
                     <p>Cantidad</p>
@@ -60,7 +72,9 @@
                 <div class="item">
                   <p>Imagen producto</p>
                   <!-- <input type="file" name="img" accept="image/*"> -->
+                 
                   <input class="borders input2" type="file" name="img" accept="image/*" id="img">
+                 
                   <% for (let i = 0 ; i < product.prod_image.length ; i++) { %>
                   <img  src="/img/products/<%=product.prod_image[i].name%>" id="img"  alt="<%=product.prod_image[i].name%>" width="400" height="400">
                   <% } %>

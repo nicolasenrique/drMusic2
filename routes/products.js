@@ -32,7 +32,7 @@ router.get("/list",                               productsController.list); // S
 router.get("/create",   authAdminMiddleware,      productsController.create);
 router.post("/create", upload.single('img') , validateCreateProduct  , productsController.store);
 router.get('/:id/edit', authAdminMiddleware,      productsController.edit);
-router.put('/:id/update',   upload.single('img'),  productsController.update);
+router.put('/:id/update',   upload.single('img'), validateCreateProduct  , productsController.update);
 router.get('/:id/delete', authAdminMiddleware,    productsController.formDelete);
 router.delete('/:id/delete',authAdminMiddleware,  productsController.delete);
 router.get("/search",                             productsController.search);

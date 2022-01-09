@@ -162,19 +162,7 @@ const controlProducts = {
 
   //
   edit: (req, res) => {
-
-    // const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
-    // let product;
-    // for (prod of products) {
-    //   if (prod.prodId == req.params.id) {
-    //     product = prod;
-    //     break;
-    //   }
-    // }
-    // res.render("product_edit", { product: product });
-
-    //
-
+    
     db.Product.findByPk(req.params.id, {
       include: [{association: "prod_price"},{association: "prod_image"},{association: "prod_category"},{association: "prod_size"}]
     })
@@ -186,8 +174,10 @@ const controlProducts = {
   //
   update: (req, res) => {
 
-  
+    const resultValidation1 = validationResult(req);
     
+
+    if (resultValidation1.isEmpty()){    
 
     db.Product.update(
       {         
@@ -219,10 +209,19 @@ const controlProducts = {
     },    
   {
     where: { id_product: req.params.id}
-    }
-  )
- 
-  res.redirect("/products/list")  
+    })
+  .then(() => {
+    return res.redirect("/products/list");
+  })
+  .catch(function(error){
+    res.send(error)         
+  })  
+} else {
+  return res.send(resultValidation1)
+  
+} 
+
+    
   },
   delete: (req, res) => {
     //
