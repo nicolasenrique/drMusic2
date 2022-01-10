@@ -17,9 +17,7 @@
       <%- include('./partials/header') %>
       <!--FIN DEL HEADER-->
     </div>
-      <div class="column-3"><div class="errores">
-        <ul></ul>
-      </div>
+      <div class="column-3">
     </div>
       <div class="column-3">
           <div class="testbox">
@@ -78,8 +76,8 @@
                 </div>                
                 <div class="item">
                   <p>Categoría</p>
-                  <select class="borders select2" name="categoria" id="" required>
-                    <option value="" disabled selected>- Seleccione la categoría - </option>
+                  <select class="borders select2" name="categoria" id="" >
+                    <!-- <option value="" disabled selected>- Seleccione la categoría -</option> -->
                     
                     <option value="1">Guitarra</option>
                     <option value="2">Bajo</option>
@@ -92,7 +90,7 @@
                 <div class="item">
                   <p>Medidas</p>
                   <div class="dimensions"> 
-                    <select class="borders select2" name="medidas" required>
+                    <select class="borders select2" name="medidas">
                       <option value="cm">Centimetros</option>
                       <option value="inch">Pugadas</option>
                       <option value="metro">Metro</option>
@@ -104,7 +102,7 @@
                 </div>
                 <div class="item">
                   <p>Color principal</p>
-                  <select class="borders select2"  name="color" id="" required>
+                  <select class="borders select2"  name="color" id="">
                     <option value="" disabled selected>- Seleccione el color - </option>
                     
                     <option value="1">Silver</option>
@@ -165,7 +163,12 @@
       <!-- </div> este div rompía la coherencia de las columnas -->
       <div class="recuadro">4</div>
       <div class="recuadro">5</div>
-      <div class="recuadro">6</div>  
+      <div class="recuadro">
+        <div class="errores">
+          <ul></ul>
+        </div>
+
+      </div>  
       <div class="rows-3">
         <!--INICIO DEL FOOTER-->
         <%- include('./partials/footer') %>
