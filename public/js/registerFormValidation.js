@@ -15,7 +15,12 @@ window.onload = function(){
     
     fieldName.addEventListener('focus', function () {
         
-        errorName.innerHTML += "El campo nombre no debe estar vacío";        
+        if (fieldName.value == "") {
+
+            errorName.innerHTML += "El campo nombre no debe estar vacío";
+
+        }
+                
     })
 
     fieldName.onkeydown  = function () {
@@ -42,8 +47,14 @@ window.onload = function(){
     let errorLastName = document.querySelector(".errorLastName p");    
     
     fieldLastName.addEventListener('focus', function () {
+
+        if (fieldLastName.value == "") {
+
+            errorLastName.innerHTML += "El campo apellido no debe estar vacío";   
+
+        }
             
-        errorLastName.innerHTML += "El campo apellido no debe estar vacío";        
+             
     })
     
     fieldLastName.onkeydown  = function () {
@@ -69,8 +80,14 @@ window.onload = function(){
     let errorEmail = document.querySelector(".errorEmail p");    
     
     fieldEmail.addEventListener('focus', function () {
+
+        if (fieldEmail.value == "") {
+
+            errorEmail.innerHTML += "El campo email no debe estar vacío";   
+
+        }
             
-        errorEmail.innerHTML += "El campo email no debe estar vacío";        
+             
     })
     
     fieldEmail.onkeydown  = function () {
@@ -96,8 +113,12 @@ window.onload = function(){
     let errorPassword = document.querySelector(".errorPassword p");    
     
     fieldPassword.addEventListener('focus', function () {
-            
-        errorPassword.innerHTML += "El campo password no debe estar vacío";        
+
+        if (fieldPassword.value == "") {
+
+            errorPassword.innerHTML += "El campo password no debe estar vacío"; 
+
+        }
     })
     
     fieldPassword.onkeydown  = function () {
