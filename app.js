@@ -12,6 +12,13 @@ const recordarmeMiddleware = require('./middlewares/recordarmeMiddleware');
 const userLoggedMiddleware = require('./middlewares/userLoggedMiddleware');
 
 
+// habilitar cors policies en la app
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.use(session({
   secret: "Shhh, it's a secret",
   resave: false,
