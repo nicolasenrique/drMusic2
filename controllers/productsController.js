@@ -290,7 +290,76 @@ const controlProducts = {
       .then(function(product){
         res.render('product_delete', {product: product})
     });   
+  },
+
+
+  //APIS
+
+  //Listado de productos
+  productList: (req, res) => {
+    //listado de productos
+    let products      =  db.Product.findAll({
+      include: [{association: "prod_price"},{association: "prod_image"}]
+    });
+    // cantidad de productos por categoria
+    let prod_category =  db.ProdCategory.findAll({
+      attributes: ['id_prod_category', 'description', [db.Sequelize.fn('COUNT', 'id_prod_category'), 'countByIdCat']],
+      include: [ { model: db.Product, as: 'product' , attributes: [] } ],
+      group: ['id_prod_category'],
+    });
+    // ultimo producto creado
+    let lastProduct      =  db.Product.findAll({
+      include: [{association: "prod_price"},{association: "prod_image"}],
+      order :   db.Sequelize.literal('Product.creation_date DESC'),
+      limit: 1
+    });
+
+    //    
+    Promise.all([products, prod_category, lastProduct])
+      .then(function([products, categories, lastProduct]){
+        let prd_aux = products.map(function(prd) {
+          prd.dataValues.detailUrl = 'http://localhost:3000/products/api/productdetail/'+prd.dataValues.id_product;
+          return prd;
+        });
+        lastProduct[0].dataValues.detailUrl = 'http://localhost:3000/products/api/productdetail/'+lastProduct[0].dataValues.id_product;
+        return res.status(200)
+        .json({
+            products : prd_aux,
+            productCount: products.length,
+            lastProductCreated: lastProduct,
+            categories: categories,
+            categoriesCount: categories.length,            
+            status: 200
+        })
+
+      })
+  },
+  //Detalle de productos
+  productDetail: (req, res) => {
+    db.Product.findByPk(req.params.id, {
+      include: [{association: "prod_price"},{association: "prod_image"}]
+    })
+    .then(function(movie){
+
+      // console.log(movie);
+      if (!movie){
+        movie = 'ID not found';
+      }
+      return res.status(200).json({
+          data: movie,
+          status: 200
+
+      });
+    })
+    .catch(function (err) {
+      return res.status(200).json({
+        error: err,
+        status: 500
+
+      });
+    });
   }
+
 };
 
 module.exports = controlProducts;

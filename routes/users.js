@@ -51,4 +51,8 @@ router.post("/update/:id", usersController.update);
 
 router.get("/logout/", usersController.logout);
 
+//APIs
+router.get("/api/userlist",           usersController.userList);
+router.get("/api/userdetail/:id",     usersController.userDetail);
+
 module.exports = router;
