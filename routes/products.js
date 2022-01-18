@@ -38,6 +38,11 @@ router.get('/:id/delete', authAdminMiddleware,    productsController.formDelete)
 router.delete('/:id/delete',authAdminMiddleware,  productsController.delete);
 router.get("/search",                             productsController.search);
 router.get("/:id",                                productsController.detail);
+
+// APIs
+router.get("/api/productlist",                        productsController.productList);
+router.get("/api/productdetail/:id",                  productsController.productDetail);
+
  
 
 

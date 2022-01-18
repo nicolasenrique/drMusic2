@@ -197,7 +197,69 @@ const controlUsers = {
   logout: function (req, res) {
     req.session.destroy(); // Este método borra cualquier cosa que esté en session
     return res.redirect("/");
+  },
+
+  // API
+  userList: function (req, res) {
+    // lista de usuarios
+    let userList = db.User.findAll({
+      include: [{association: "category"},{association: "status"}]
+    });
+
+    // ultimo usuario creado
+    let lastUserCreated = db.User.findAll({   
+      include:  [{association: "category"},{association: "status"}],  
+      order :   db.Sequelize.literal('User.creation_date DESC'),
+      limit: 1
+      
+    });
+
+    Promise.all([userList, lastUserCreated])
+    .then(function([usrs, lastUserCreated]){
+      let aux_users = usrs.map(function(u){
+        u.dataValues.detailUrl = 'http://localhost:3000/products/api/userdetail/'+u.dataValues.id_user;
+        return u;
+      });
+      lastUserCreated[0].dataValues.detailUrl = 'http://localhost:3000/products/api/userdetail/'+lastUserCreated[0].dataValues.id_user;
+      //
+      return res.status(200)
+      .json({
+          users:              aux_users,
+          lastUserCreated:    lastUserCreated,
+          usersCount:         usrs.length,
+          status:             200
+      })
+
+    })
+    .catch(function (err) {
+      return res.status(200).json({
+        error:      err,
+        status:     500
+
+      });
+    });
+  },
+  userDetail: function (req, res) {
+    //
+    db.User.findByPk(req.params.id,{
+      include: [{association: "category"},{association: "status"}]
+    })
+    .then(function(user){
+      return res.status(200).json({
+        error: user,
+        status: 500
+
+      });
+     })
+    .catch(function (err) {
+      return res.status(200).json({
+        error: err,
+        status: 500
+
+      });
+    });
   }
+
 };
 
 module.exports = controlUsers;
