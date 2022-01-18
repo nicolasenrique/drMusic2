@@ -246,8 +246,8 @@ const controlUsers = {
     })
     .then(function(user){
       return res.status(200).json({
-        error: user,
-        status: 500
+        data: user,
+        status: 200
 
       });
      })
