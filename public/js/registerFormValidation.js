@@ -5,6 +5,7 @@ window.onload = function(){
     let fieldLastName = document.querySelector('input.lastName');
     let fieldEmail = document.querySelector('input.mail');
     let fieldPassword = document.querySelector('input.password');
+    let fieldImagen = document.querySelector('input.avatar');
     let regex = new RegExp("([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])");
     let regexPassword = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$");
 
@@ -14,7 +15,12 @@ window.onload = function(){
     
     fieldName.addEventListener('focus', function () {
         
-        errorName.innerHTML += "El campo nombre no debe estar vacío";        
+        if (fieldName.value == "") {
+
+            errorName.innerHTML += "El campo nombre no debe estar vacío";
+
+        }
+                
     })
 
     fieldName.onkeydown  = function () {
@@ -41,8 +47,14 @@ window.onload = function(){
     let errorLastName = document.querySelector(".errorLastName p");    
     
     fieldLastName.addEventListener('focus', function () {
+
+        if (fieldLastName.value == "") {
+
+            errorLastName.innerHTML += "El campo apellido no debe estar vacío";   
+
+        }
             
-        errorLastName.innerHTML += "El campo apellido no debe estar vacío";        
+             
     })
     
     fieldLastName.onkeydown  = function () {
@@ -68,8 +80,14 @@ window.onload = function(){
     let errorEmail = document.querySelector(".errorEmail p");    
     
     fieldEmail.addEventListener('focus', function () {
+
+        if (fieldEmail.value == "") {
+
+            errorEmail.innerHTML += "El campo email no debe estar vacío";   
+
+        }
             
-        errorEmail.innerHTML += "El campo email no debe estar vacío";        
+             
     })
     
     fieldEmail.onkeydown  = function () {
@@ -95,8 +113,12 @@ window.onload = function(){
     let errorPassword = document.querySelector(".errorPassword p");    
     
     fieldPassword.addEventListener('focus', function () {
-            
-        errorPassword.innerHTML += "El campo password no debe estar vacío";        
+
+        if (fieldPassword.value == "") {
+
+            errorPassword.innerHTML += "El campo password no debe estar vacío"; 
+
+        }
     })
     
     fieldPassword.onkeydown  = function () {
@@ -131,6 +153,36 @@ window.onload = function(){
         }
                      
     } */
+
+    //Validando el campo Imagen
+    
+    let errorImagen = document.querySelector(".errorImagen p");    
+    
+    fieldImagen.addEventListener('mouseover', function () {
+            
+        errorImagen.innerHTML = "Deseas subir una imagen??";        
+    })
+      
+    fieldImagen.onclick  = function () {    
+
+        errorImagen.innerHTML = "Recuerda que los formatos admitidos son JPG, JPEG, PNG y GIF";  
+                   
+    }
+    
+    fieldImagen.onmouseout  = function () {  
+        
+        if (fieldImagen.value.indexOf('.jpg') != -1 || fieldImagen.value.indexOf('.jpeg') !=-1 || fieldImagen.value.indexOf('.gif') !=-1 || fieldImagen.value.indexOf('.png') !=-1) {
+
+            errorImagen.innerHTML = "Bien!!! subiste un formato válido";      
+        
+        } else {
+
+            errorImagen.innerHTML = "El archivo que elegiste no coincide los formatos admitidos (JPG, JPEG, PNG y GIF)"; 
+
+        }              
+    }
+
+
     
     /* 
     *** La forma que probé inicialmente, la misma funcionaba,

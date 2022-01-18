@@ -31,7 +31,7 @@
       <p class="message-create">Crea tu cuenta</p>
     </div>
     
-    <form action="/users/register" method="POST" class="register">
+    <form action="/users/register" method="POST" class="register" enctype="multipart/form-data">
       <div class="complete-name">
         <div class="input-errormsg">
           <input type="text" name="name" placeholder="Nombre" class="name" value="<%= locals.oldData ? oldData.name : null %>">
@@ -92,13 +92,21 @@
         </div>
         </div>
       <div class="complete-picture">
-        <input type="file" name="img" class="avatar" id="avatar1">
-        <% if (locals.errors && errors.img) { %>
-          <div class="text-danger">
+        <div class="input-errormsg">
+          <input type="file" name="img" class="avatar" id="avatar1">
+          <% if (locals.errors && errors.img) { %>
+            <div class="text-danger">
               <%= errors.img.msg %>
-          </div>
-          <% } %> 
+            </div>
+          <% } %>
+          <section class="errorImagen">
+            <p>
+
+            </p>
+          </section>   
+        </div>
       </div>
+      <br>
       <div class="create-account-buttom">
         <button type="submit" name="create-account" class="create-account-tex">
           CREAR CUENTA

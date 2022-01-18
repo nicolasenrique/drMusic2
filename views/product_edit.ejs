@@ -18,9 +18,7 @@
         <!--FIN DEL HEADER-->
       </div>
       <script src="/js/productEditValidation.js"></script>
-      <div class="column-3 recuadro"> <div class="column-3"><div class="errores">
-        <ul></ul>
-      </div>
+      <div class="column-3 recuadro"> <div class="column-3">
     </div></div>
       <div class="column-3">
           <div class="testbox">
@@ -39,13 +37,25 @@
                   </div>
                   <div>
                     <p>Nombre</p>
-                    <input class="borders input2" type="text" id ="productName" name="name" placeholder="Nombre" value="<%= product.description %>" >
+                    <input class="borders input2" type="text" id ="productName" name="name" placeholder="Nombre" value="<%= product.brand %>" >
+                    <% if (locals.errors && errors.name) { %>
+                      <div class="text-danger">
+                        <%= errors.name.msg %>
+                        </div>
+                        <% } %>
                   </div>
                   <div class="item">
                     <p>Precio</p>
-                    
-                    <input class="borders input2"  type="number" name="precio" placeholder="$ 0.00" value=>
-                   
+                    <% for (let i = 0 ; i < product.prod_price.length ; i++) { %>
+                    <input class="borders input2"  type="number" name="precio" placeholder="$ 0.00" value="<%= product.prod_price[i].price %>" >
+                    <% } %>
+                    <div>
+                      <% if (locals.errors && errors.precio) { %>
+                        <div class="text-danger">
+                          <%= errors.precio.msg %>
+                          </div>
+                          <% } %>
+                    </div>
                   </div>
                   <div class="item">
                     <p>Cantidad</p>
@@ -55,12 +65,14 @@
                 <div class="item">
                   <p>Descripción</p>
                   
-                  <textarea class="borders textarea2" name="descripcion"rows="3" placeholder="Incluya la descripción general del producto" id="descripcion"> </textarea>
+                  <textarea class="borders textarea2" name="descripcion"rows="3" placeholder="Incluya la descripción general del producto" id="descripcion" value=> <%= product.description %> </textarea>
                 </div>          
                 <div class="item">
                   <p>Imagen producto</p>
                   <!-- <input type="file" name="img" accept="image/*"> -->
+                 
                   <input class="borders input2" type="file" name="img" accept="image/*" id="img">
+                 
                   <% for (let i = 0 ; i < product.prod_image.length ; i++) { %>
                   <img  src="/img/products/<%=product.prod_image[i].name%>" id="img"  alt="<%=product.prod_image[i].name%>" width="400" height="400">
                   <% } %>
@@ -78,7 +90,17 @@
                     <option value="accesorios" <%= product.categoria  == 'accesorios' ? 'selected' : ''%>>Accesorios</option>
                   </select>
                   --> 
-                  <input class="borders input2" type="text" value="<%= product.id_prod_category%>">
+                  
+                  <select name="categoria" id="" value="<%= product.id_prod_category%>">
+                    <!-- <option value="" disabled selected>- Seleccione la categoría - </option> -->
+                    
+                    <option value="1">Guitarra</option>
+                    <option value="2">Bajo</option>
+                    <option value="3">Batería</option>
+                    <option value="4">Teclado</option>
+                    <option value="5">Amplificador</option>
+                  
+                </select>
                 </div>
                 <div class="item">
                   <p>Medidas</p>
@@ -95,44 +117,16 @@
                 </div>
                 <div class="item">
                   <p>Color principal</p>
-                  <div class="multiple-items">       
-                    <div>
-                        <label for="silver">Silver </label>   
-                        <input type="radio" name="color" id="silver" value="silver" <%= product.color  == 'silver' ? 'checked' : ''%> disabled>                                         
-                    </div>
-                    <div>
-                      <label for="gold">Gold</label>                    
-                      <input type="radio" name="color" id="gold" value="gold" <%= product.color  == 'gold' ? 'checked' : ''%> disabled>                      
-                    </div>
-                    <div>
-                      <label for="azul">Azul</label>
-                      <input type="radio" name="color" id="azul" value="azul" <%= product.color  == 'azul' ? 'checked' : ''%> disabled>                       
-                    </div>
-                    <div>
-                      <label for="rojo">Rojo</label>                    
-                      <input type="radio" name="color" id="rojo" value="rojo" <%= product.color  == 'rojo' ? 'checked' : ''%> disabled>                       
-                    </div>
-                    <div>
-                      <label for="amarillo">Amarillo</label>
-                      <input type="radio" name="color" id="amarillo" value="amarillo" <%= product.color  == 'amarillo' ? 'checked' : ''%> disabled>   
-                    </div>
-                    <div>
-                      <label for="verde">Verde</label>
-                      <input type="radio" name="color" id="verde" value="verde" <%= product.color  == 'verde' ? 'checked' : ''%> disabled>                       
-                    </div>
-                    <div>
-                      <label for="rosa">Rosa</label>
-                      <input type="radio" name="color" id="rosa" value="rosa" <%= product.color  == 'rosa' ? 'checked' : ''%> disabled>                       
-                    </div>
-                    <div>
-                      <label for="blanco">Blanco</label>
-                      <input type="radio" name="color" id="blanco" value="blanco" <%= product.color  == 'blanco' ? 'checked' : ''%> disabled>                       
-                    </div>
-                    <div>
-                      <label for="negro">Negro</label>
-                      <input type="radio" name="color" id="negro" value="negro" <%= product.color  == 'negro' ? 'checked' : ''%> disabled>   
-                    </div>
-                  </div>
+                  <select class="borders select2"  name="color" id="">
+                    <option value="" disabled selected>- Seleccione el color - </option>
+                    
+                    <option value="1">Silver</option>
+                    <option value="2">Negro</option>
+                    <option value="3">Blanco</option>
+                    <option value="4">Azul</option>
+                    <option value="5">Rojo</option>
+                   
+                </select>
                 </div>                  
               </div>
               <!-- <div class="item">
@@ -155,7 +149,9 @@
       </div>
       <div class="recuadro">4</div>
       <div class="recuadro">5</div>
-      <div class="recuadro">6</div>  
+      <div class="recuadro"><div class="errores">
+        <ul></ul>
+      </div></div>  
       <div class="rows-3">
         <!--INICIO DEL FOOTER-->
         <%- include('./partials/footer') %>

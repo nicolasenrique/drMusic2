@@ -17,18 +17,16 @@
       <%- include('./partials/header') %>
       <!--FIN DEL HEADER-->
     </div>
-      <div class="column-3"><div class="errores">
-        <ul></ul>
-      </div>
+      <div class="column-3">
     </div>
       <div class="column-3">
           <div class="testbox">
             
-            <form class="form_admin" action="/products/create" method="POST" enctype="multipart/form-data" >
+            <form class="form_admin" action="/products/create" method="POST"  enctype="multipart/form-data" >
               <div class="banner">
                 <h1 class="h1_form">Crear producto</h1>
               </div>
-
+             
               <div class="item">
                 <!-- <p>Productos</p> -->
                 <div class="multiple-items">
@@ -38,8 +36,15 @@
                   </div>
                   <div>
                     <p>Nombre</p>
-                    <input class="borders input2"  type="text" id ="productName" name="name" placeholder="Nombre"><br>
+                    <input class="borders input2" type="text" id ="productName" name="name" placeholder="Nombre"><br>
+                    <% if (locals.errors && errors.name) { %>
+                      <div class="text-danger">
+                        <%= errors.name.msg %>
+                        </div>
+                        <% } %>
+                
                   </div>
+                 
                   <div class="item">
                     <p>Precio</p>
                     <input class="borders input2"  type="number" name="precio" placeholder="$ 0.00">
@@ -52,26 +57,40 @@
                 <div class="item">
                   <p>Descripción</p>
                   <textarea class="borders textarea2" name="descripcion"rows="3" placeholder="Incluya la descripción general del producto" id="descripcion"></textarea>
+                  <% if (locals.errors && errors.descripcion) { %>
+                    <div class="text-danger">
+                      <%= errors.descripcion.msg %>
+                      </div>
+                      <% } %>
                 </div>          
                 <div class="item">
                   <p>Imagen asociada</p>
                   <!-- <input type="email" name="email"/> -->
                   <!-- <input type="file" id="img" name="img" accept="image/*"> -->
                   <input class="borders input2" type="file" name="img" accept="image/*" id="img">
+                  <% if (locals.errors && errors.name) { %>
+                    <div class="text-danger">
+                      <%= errors.name.msg %>
+                  </div>
+                  <% } %> 
                 </div>                
                 <div class="item">
                   <p>Categoría</p>
-                  <select class="borders select2" name="categoria" id="" required>
-                    <option value="" disabled selected>- Seleccione la categoría - </option>
-                    <% allProdCats.forEach(cat => { %>
-                    <option value="<%= cat.id_prod_category %>"><%= cat.description %></option>
-                    <% }); %>
+                  <select class="borders select2" name="categoria" id="" >
+                    <!-- <option value="" disabled selected>- Seleccione la categoría -</option> -->
+                    
+                    <option value="1">Guitarra</option>
+                    <option value="2">Bajo</option>
+                    <option value="3">Batería</option>
+                    <option value="4">Teclado</option>
+                    <option value="5">Amplificador</option>
+                  
                 </select>
                 </div>
                 <div class="item">
                   <p>Medidas</p>
                   <div class="dimensions"> 
-                    <select class="borders select2" name="medidas" required>
+                    <select class="borders select2" name="medidas">
                       <option value="cm">Centimetros</option>
                       <option value="inch">Pugadas</option>
                       <option value="metro">Metro</option>
@@ -83,11 +102,15 @@
                 </div>
                 <div class="item">
                   <p>Color principal</p>
-                  <select class="borders select2"  name="color" id="" required>
+                  <select class="borders select2"  name="color" id="">
                     <option value="" disabled selected>- Seleccione el color - </option>
-                    <% allColors.forEach(color => { %>
-                    <option value="<%= color.id_color %>"><%= color.name %></option>
-                    <% }); %>
+                    
+                    <option value="1">Silver</option>
+                    <option value="2">Negro</option>
+                    <option value="3">Blanco</option>
+                    <option value="4">Azul</option>
+                    <option value="5">Rojo</option>
+                   
                 </select>
                   <!-- <div class="multiple-items">             
                     <div>
@@ -140,7 +163,12 @@
       <!-- </div> este div rompía la coherencia de las columnas -->
       <div class="recuadro">4</div>
       <div class="recuadro">5</div>
-      <div class="recuadro">6</div>  
+      <div class="recuadro">
+        <div class="errores">
+          <ul></ul>
+        </div>
+
+      </div>  
       <div class="rows-3">
         <!--INICIO DEL FOOTER-->
         <%- include('./partials/footer') %>

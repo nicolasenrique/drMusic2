@@ -60,7 +60,7 @@ body {
   align-self: center;
 }
 
-.errorName, .errorLastName, .errorEmail, .errorPassword {
+.errorName, .errorLastName, .errorEmail, .errorPassword, .errorImagen {
 
   color: #bf1304;
   font-size: 12px;

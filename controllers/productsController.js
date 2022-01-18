@@ -11,6 +11,7 @@ const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
 const toThousand = (n) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 const {validationResult} = require("express-validator")
+
 // Validacion Backend
 function grabaRegistros(products) {
   let prdoctsJSON = JSON.stringify(products, null, 2);
@@ -87,14 +88,15 @@ const controlProducts = {
 
     Promise.all([promProduct, promColor, promProdCat, promProdPrice, promProdSize, promProdImage])
       .then(([allProducts, allColors, allProdCats, allProdPrices, allProdSizes, allProdImages]) => {
-        return res.render(path.resolve(__dirname, "..", "views", "product_create"), {
+         res.render(path.resolve(__dirname, "..", "views", "product_create"), {
           allProducts,
           allColors,
           allProdCats,
           allProdPrices,
           allProdSizes,
           allProdImages
-        });
+        }
+       );
       })
       .catch((error) => res.send(error));
   },
@@ -102,10 +104,10 @@ const controlProducts = {
     // const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
     // let prodToCreate = {};
 
-    let errors = validationResult(req);
-    if (errors.isEmpty()){
-
+    const resultValidation = validationResult(req);
     
+
+    if (resultValidation.isEmpty()){    
 
     let img = "default-img.png";
     if (req.file != undefined) {
@@ -153,26 +155,14 @@ const controlProducts = {
     res.send(error)         
   })  
 })
-} else{
-  return res.render("product_create_errors", {errors:errors.array()})
+} else {
+  return res.render("product_create", { errors: resultValidation.mapped(), oldData: req.body })
 } 
   },
 
   //
   edit: (req, res) => {
-
-    // const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
-    // let product;
-    // for (prod of products) {
-    //   if (prod.prodId == req.params.id) {
-    //     product = prod;
-    //     break;
-    //   }
-    // }
-    // res.render("product_edit", { product: product });
-
-    //
-
+    
     db.Product.findByPk(req.params.id, {
       include: [{association: "prod_price"},{association: "prod_image"},{association: "prod_category"},{association: "prod_size"}]
     })
@@ -184,8 +174,10 @@ const controlProducts = {
   //
   update: (req, res) => {
 
-  
+    const resultValidation1 = validationResult(req);
     
+
+    if (resultValidation1.isEmpty()){    
 
     db.Product.update(
       {         
@@ -217,10 +209,19 @@ const controlProducts = {
     },    
   {
     where: { id_product: req.params.id}
-    }
-  )
- 
-  res.redirect("/products/list")  
+    })
+  .then(() => {
+    return res.redirect("/products/list");
+  })
+  .catch(function(error){
+    res.send(error)         
+  })  
+} else {
+  return res.send(resultValidation1)
+  
+} 
+
+    
   },
   delete: (req, res) => {
     //
