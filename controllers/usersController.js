@@ -217,10 +217,10 @@ const controlUsers = {
     Promise.all([userList, lastUserCreated])
     .then(function([usrs, lastUserCreated]){
       let aux_users = usrs.map(function(u){
-        u.dataValues.detailUrl = 'http://localhost:3000/products/api/userdetail/'+u.dataValues.id_user;
+        u.dataValues.detailUrl = 'http://localhost:3000/users/api/userdetail/'+u.dataValues.id_user;
         return u;
       });
-      lastUserCreated[0].dataValues.detailUrl = 'http://localhost:3000/products/api/userdetail/'+lastUserCreated[0].dataValues.id_user;
+      lastUserCreated[0].dataValues.detailUrl = 'http://localhost:3000/users/api/userdetail/'+lastUserCreated[0].dataValues.id_user;
       //
       return res.status(200)
       .json({
