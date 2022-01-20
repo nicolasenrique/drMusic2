@@ -1,9 +1,11 @@
 import './App.css';
+import ContentRight from './components/ContentRight';
 
 function App() {
   return (
     <div>
-      Dr Music
+      <h1>Dr Music</h1>
+      <ContentRight />
     </div>
   );
 }
