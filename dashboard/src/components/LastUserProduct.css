@@ -9,7 +9,9 @@ body {
     width: 400px;
     border-radius: 8px;
     padding: 14px;
-    margin: 14px;
+    margin: 48px;
     color: #201f1e;
+    margin-left: auto;
+    margin-right: auto;
 }
 
