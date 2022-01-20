@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import '../Detail.css'
 
-function Products() {
+function Detail() {
 
     const [ultimo, setUltimo] = useState();
 
@@ -73,4 +73,4 @@ function Products() {
     )
 }
 
-export default Products;
+export default Detail;
