@@ -1,5 +1,7 @@
 .sideBar {
-    background-color: rgb(184, 158, 166);
+    background-color:#DF1304;
     width: 300px;
     text-align: center;
+    color: white;
+    font-weight: bold;
 }

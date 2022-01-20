@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../images/Dr-F2EDE4.png';
+import logo from '../images/Dr-DF1304.png';
 
 const LogoTitle = () => {
     return (

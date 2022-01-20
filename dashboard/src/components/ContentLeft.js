@@ -1,9 +1,11 @@
 import React from 'react'
+import Detail  from './Detail'
+import './ContentLeft.css'
 
 const ContentLeft = () => {
     return (
-        <div>
-            
+        <div className="ContentLeft">
+            <Detail />            
         </div>
     )
 }

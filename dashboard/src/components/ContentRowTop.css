@@ -1,0 +1,22 @@
+
+.MainContentRowTop {
+    background-color:#F2EDE4;
+}
+
+.contentRowTop {
+    display: flex;
+    width: 100%;
+    background-color:#F2EDE4;
+    border: #555555 3px solid;
+    justify-content: space-around;
+}
+
+.titleContentRowTop {
+    text-align: center;    
+}
+
+.contentRowTop li {
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+}
