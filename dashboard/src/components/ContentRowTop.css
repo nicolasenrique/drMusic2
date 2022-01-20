@@ -46,20 +46,35 @@ textos-grises {
     color: rgb(73, 70, 70);
 }
 
-.productContainer {
-    width:500px;
-    border-style: solid;
-    background-color: salmon;
+.totalBox {
+    width:300px;
+    height:90px;
+    background-color: grey;
     color:snow;
-    
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 40px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    box-shadow: 0px 0px 5px 1px black;
+    font-size: 25px;
 }
 
 ul{
     list-style-type:none
 }
-.listContainer{
-text-align: center;
-justify-content: center;
-display: flex;
-align-items: center;
+.totalContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    
 }
+
+.totals{
+    font-style: bold;
+    text-align: center;
+}
+

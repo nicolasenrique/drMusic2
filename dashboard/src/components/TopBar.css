@@ -1,0 +1,11 @@
+
+
+.contentTopBar {
+    background-color:#F2EDE4;
+    border: #555555 3px solid;
+    padding: 20px;
+    text-align: center;
+    color:grey;
+    font-size: 17px;
+    font-weight: bold;
+}

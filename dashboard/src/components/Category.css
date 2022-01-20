@@ -1,0 +1,28 @@
+
+body {
+    background-color: #f2ede4;
+}
+.wrapperCat {
+
+    width: 800px;
+
+}
+
+ul {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap
+;
+}
+.categoryItem {
+    background-color: #ce5b50;
+    width: 200px;
+    border-radius: 8px;
+    padding: 14px;
+    margin: 14px;
+    color: #f2ede4
+}
+
+.liCat {
+    list-style: none;
+}

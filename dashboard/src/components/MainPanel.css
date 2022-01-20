@@ -1,0 +1,10 @@
+.mainPanel {
+    background-color: grey;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 17px;
+    border-radius: 8px;
+    height: 120px;
+    width: 300px;
+}

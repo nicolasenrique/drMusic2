@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import MainPanel from "./MainPanel";
-import '../ContentRowTop.css'
+import './ContentRowTop.css'
 
 function ContentRowTop() {
 
@@ -46,7 +45,7 @@ function ContentRowTop() {
             }
              {
                 // ultimo !== 'undefined' && 
-                <ul>
+                <div>
                     {
                         
                     //   return (  
@@ -97,9 +96,10 @@ function ContentRowTop() {
                         
 
                     }
-                </ul>
+                </div>
             }
         </div>
+
     )
 }
 

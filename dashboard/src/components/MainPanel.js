@@ -1,9 +1,10 @@
 import React from 'react'
+import './MainPanel.css'
 
 const MainPanel = () => {
     return (
-        <div>
-            
+        <div className="mainPanel">
+            MAIN PANEL            
         </div>
     )
 }
