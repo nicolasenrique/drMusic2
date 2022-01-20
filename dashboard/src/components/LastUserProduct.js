@@ -46,22 +46,24 @@ function DoubleFetch() {
                      products && users && 
                      <div>
                         <div className="catBox"> 
-                                <h2><b>Ultimo producto creado</b></h2>
+                                <h2 className="center">Ultimo producto creado</h2>
                                 <br/>
-                                <h4><b>ID: </b>{products.id_product}</h4>
+                                <h4><b>Id de Producto: </b>{products.id_product}</h4>
                                 <h4><b>Descripción: </b>{products.description}</h4>
                                 <h4><b>Marca: </b>{products.brand}</h4>
-                                <h4><b>Fecha Creación: </b>{products.creation_date}</h4>
+                                <h4><b>Fecha Creación: </b>{products.creation_date.substring(0, 10)}</h4>
+                                <h4><b>Hora Creación: </b>{products.creation_date.substring(11, 19)}</h4>
 
                         </div> 
   
                         <div className="catBox"> 
-                                <h2><b>Ultimo usuario creado</b></h2>
+                                <h2 className="center">Ultimo usuario creado</h2>
                                 <br/>
-                                <h4><b>ID: </b>{users.id_user}</h4>
+                                <h4><b>Id de Usuario: </b>{users.id_user}</h4>
                                 <h4><b>Nombre: </b>{users.first_name}</h4>
                                 <h4><b>Apellido: </b>{users.last_name}</h4>
-                                <h4><b>Fecha Creación: </b>{users.creation_date}</h4>
+                                <h4><b>Fecha Creación: </b>{users.creation_date.substring(0, 10)}</h4>
+                                <h4><b>Hora Creación: </b>{users.creation_date.substring(11, 19)}</h4>
 
                         </div>   
                     </div>
