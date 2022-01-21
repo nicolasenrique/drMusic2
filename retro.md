@@ -6,10 +6,13 @@ Start Doing:
 *Documentar el código. 
 *Unificar la forma de escritrua del código. 
 *Definir un criterio para nombrar las variables.
+*Estandarización del idioma inglés para métodos, variables,etc.
+*Comentar el código
 
 More Off
 
 *Estandarización en el diseño y color de botones. 
+*Atomización de componentes para un diseño más profesional.
 
 
 Keep Doing
@@ -21,14 +24,16 @@ Keep Doing
 *Weekly.
 *Identificar la dependencia de stories para establecer el orden de ejecución. 
 *Peer review.
+*Determinación de deadlines en Trello para que todo el equipo esté al tanto.
 
 Less Off
 
 *Ser muy ambciosos con el alcance y la complejidad de nuestro proyecto.
 
+
 Stop Doing
 
-
+*Utilización de términos en español.
 
 
 
