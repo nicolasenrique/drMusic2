@@ -31,6 +31,7 @@ const controlUsers = {
   },
   store: function (req, res) {
     //Primero me traigo los resultados de la validación del formulario
+    var timeInMss = Date.now()
 
     const resultValidation = validationResult(req);
 
@@ -52,7 +53,7 @@ const controlUsers = {
         password: encryptedPass,
         phone_number: null,
         address: null,
-        creation_date: null,
+        creation_date: timeInMss,
         last_login: null,
         id_user_category: 1,
         id_user_status: 1,
