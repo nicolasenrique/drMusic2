@@ -16,8 +16,8 @@ function ContentRowTop() {
 
         Promise.all([products, users])
         .then(function([resultadoProducts, resultadoUsers]){            
-            setProducts(resultadoProducts.lastProductCreated[0]);
-            setUsers(resultadoUsers.lastUserCreated[0]);
+            setProducts(resultadoProducts.productCount);
+            setUsers(resultadoUsers.usersCount);
             setProductsTotal(resultadoProducts.categoriesCount)
             // 
         })
@@ -61,14 +61,14 @@ function ContentRowTop() {
                      products && users && 
                      <div className="totalContainer">
                         <div className="totalBox"> 
-                                <h4>Total de productos: {products.id_product}</h4>
+                                <h4>Total de productos: {products}</h4>
                        
 
                         </div> 
 
                         <br></br>    
                         <div className="totalBox"> 
-                                <h4>Total de usuarios: {users.id_user}</h4>
+                                <h4>Total de usuarios: {users}</h4>
 
                         </div>   
                         <br></br>  
