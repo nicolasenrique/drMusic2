@@ -1,0 +1,20 @@
+
+body {
+    background-color: #f2ede4;
+}
+
+.center {
+    text-align: center;
+}
+
+.catBox {
+    background-color: #ac918cab;
+    width: 350px;
+    border-radius: 8px;
+    padding: 14px;
+    margin: 48px;
+    color: #201f1e;
+    margin-left: auto;
+    margin-right: auto;
+}
+
