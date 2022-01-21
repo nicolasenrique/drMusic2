@@ -218,9 +218,11 @@ const controlUsers = {
     .then(function([usrs, lastUserCreated]){
       let aux_users = usrs.map(function(u){
         u.dataValues.detailUrl = 'http://localhost:3000/users/api/userdetail/'+u.dataValues.id_user;
+        delete u.dataValues.password;
         return u;
       });
       lastUserCreated[0].dataValues.detailUrl = 'http://localhost:3000/users/api/userdetail/'+lastUserCreated[0].dataValues.id_user;
+      delete lastUserCreated[0].dataValues.password;
       //
       return res.status(200)
       .json({
