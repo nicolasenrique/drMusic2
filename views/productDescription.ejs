@@ -149,11 +149,17 @@
                       <button class="buy-btn">Agregar al carrito</button>
                   </div>
                   <div>
+                   
+                    
                       <button class="wishlist-btn">
                           Agregar a Favoritos
                       </button>
+                      
+                    
+                      
                   </div>
               </div>
+              <% if (locals.userLogged.rol === "admin") { %>
               <div>
                   <a href="/products/<%=selectedProduct.prodId%>/edit"><button class="edit-btn">Editar</button></a>
               </div>
@@ -161,6 +167,9 @@
                 <a href="/products/<%= selectedProduct.prodId %>/delete"><button class="buy-btn">Borrar</button></a>
               </div>
                 <form action="/products/<%= selectedProduct.prodId %>/delete" method="GET">
+                  <% } 
+                  
+                  %>
               <!-- <div>
                   <button type="submit" class="buy-btn" >Borrar</button>
                        <input type="hidden"  name="id" id="id"  value=<%= selectedProduct.prodId%> > -->

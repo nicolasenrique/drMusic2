@@ -7,8 +7,10 @@ const multer = require("multer");
 
 // middlewares
 const guestMiddleware = require("../middlewares/guestMiddleware");
+const authMiddleware = require("../middlewares/authMiddleware");
 const authAdminMiddleware = require("../middlewares/authAdminMiddleware");
 const validateCreateProduct = require("../middlewares/validateProductMiddleware");
+
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -28,7 +30,7 @@ var upload = multer({ storage: storage });
 
 
 
-router.get("/list",                               productsController.list); // Sugerencia Nico router.get("/", productsController.list);
+router.get("/list",              productsController.list); 
 router.get("/create",   authAdminMiddleware,      productsController.create);
 router.post("/create", upload.single('img') , validateCreateProduct  , productsController.store);
 router.get('/:id/edit', authAdminMiddleware,      productsController.edit);
@@ -36,7 +38,7 @@ router.put('/:id/update',   upload.single('img'), validateCreateProduct  , produ
 router.get('/:id/delete', authAdminMiddleware,    productsController.formDelete);
 router.delete('/:id/delete',authAdminMiddleware,  productsController.delete);
 router.get("/search",                             productsController.search);
-router.get("/:id",                                productsController.detail);
+router.get("/:id", authMiddleware,           productsController.detail);
 
 // APIs
 router.get("/api/productlist",                        productsController.productList);
