@@ -40,6 +40,9 @@ router.delete('/:id/delete',authAdminMiddleware,  productsController.delete);
 router.get("/search",                             productsController.search);
 router.get("/:id", authMiddleware,           productsController.detail);
 
+//Probando rutas category
+router.get("/category/:id",                       productsController.category);
+
 // APIs
 router.get("/api/productlist",                        productsController.productList);
 router.get("/api/productdetail/:id",                  productsController.productDetail);

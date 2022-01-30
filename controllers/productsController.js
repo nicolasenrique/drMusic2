@@ -358,6 +358,23 @@ const controlProducts = {
 
       });
     });
+  }, 
+  category: (req, res) => {
+
+    db.Product.findAll({
+      include: [
+          {association: "prod_image" }, 
+          {association: "prod_price" }
+      ],
+      where: {
+          id_prod_category: req.params.id
+    }
+    })
+    .then(products =>{
+      res.render('productList', { products: products} )
+    })
+    .catch((error) => res.send("Ups, se produjo un error Search-> " + error));
+
   }
 
 };
